@@ -595,6 +595,27 @@
   }
 
   .maplink::after { content: "\2197"; font-size: 15px; line-height: 1; }
+
+  .stay-card .when {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--edge);
+  }
+
+  .stay-card .when-time {
+    margin: 0;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(24px, 5.6vw, 34px);
+    line-height: 1.2;
+    color: var(--gold);
+  }
+
+  .stay-card .when-day {
+    margin: 4px 0 0;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--cream);
+  }
   .maplink:hover { background: rgba(245, 200, 106, .12); }
   .maplink:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
 
@@ -952,7 +973,8 @@
     }
     .intro-inner h1, .checkin-inner h1, .ask h2, .section-title, .heads h2, .signoff,
     .day-num, .ask li::before, .one-ask strong, .gate-title,
-    .stay-card .address, .rooms dt, .maplink { color: #000 !important; text-shadow: none !important; }
+    .stay-card .address, .rooms dt, .maplink,
+    .stay-card .when-time, .stay-card .when-day { color: #000 !important; text-shadow: none !important; }
     .maplink { border-color: #000 !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
     .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label,
@@ -1050,6 +1072,12 @@
       <p class="label">The house</p>
       <p class="address">1575 West Lullaby Lane<br>Anaheim, CA 92802</p>
       <a class="maplink" href="https://maps.google.com/?q=1575+West+Lullaby+Lane+Anaheim+CA+92802" target="_blank" rel="noopener">Open in Maps</a>
+
+      <div class="when">
+        <p class="label">Doors open</p>
+        <p class="when-time">After 4:00pm</p>
+        <p class="when-day">Friday, September 18</p>
+      </div>
     </div>
 
     <div class="rooms">
