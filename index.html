@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Disney Trip</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1154,6 +1157,87 @@
 
   .sheet .pager { margin-top: 4px; }
 
+  /* ---- the "where I'll be" schedule ---- */
+
+  .sked-title {
+    margin: 14px 0 0;
+    font-size: clamp(23px, 5.6vw, 31px);
+    color: var(--gold);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .sked-intro {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--muted);
+    text-align: center;
+    max-width: 54ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sked { margin: 4px 0 0; padding: 0; list-style: none; }
+
+  .sked li {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 2px 18px;
+    padding: 20px 0;
+    border-top: 1px solid var(--edge);
+  }
+
+  .sked li:last-child { border-bottom: 1px solid var(--edge); }
+
+  .sked .t {
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+
+  .sked .w {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    min-width: 0;
+  }
+
+  .sked .w b {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16.5px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--cream);
+  }
+
+  .sked .w .four-list { margin-top: 14px; }
+
+  .tag-wish {
+    display: inline-block;
+    margin-bottom: 9px;
+    padding: 3px 11px;
+    border: 1px solid var(--ember);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .sked li.wish .t { color: var(--ember); }
+  .sked li.wish .t .blank { color: var(--ember); border-color: var(--ember); min-width: 74px; }
+
+  @media (max-width: 480px) {
+    .sked li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .sked .t { padding-top: 0; }
+  }
+
   #sheet .sheet {
     padding: clamp(48px, 13vh, 104px) 20px 88px;
     align-items: center;
@@ -1211,6 +1295,10 @@
     .day-big, .hours-big { color: #000 !important; text-shadow: none !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
     .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow { color: #000 !important; }
+    .sked li { break-inside: avoid; border-color: #000 !important; }
+    .sked-title, .sked-intro, .sked .t, .sked .w, .sked .w b, .tag-wish { color: #000 !important; }
+    .sked-title { text-shadow: none !important; }
+    .tag-wish { border-color: #000 !important; }
   }
 </style>
 
@@ -1353,7 +1441,7 @@
     </p>
 
     <div class="day-hero">
-      <p class="eyebrow">Day one &middot; where you&rsquo;ll find us</p>
+      <p class="eyebrow">Day one</p>
       <p class="day-big">19</p>
       <p class="day-dow-big">Saturday</p>
       <p class="day-tag">Both parks</p>
@@ -1368,20 +1456,68 @@
         <li><span>Disneyland Park</span><b>8:00am &ndash; 11:00pm</b></li>
         <li><span>California Adventure</span><b>8:00am &ndash; 9:00pm</b></li>
       </ul>
-      <p class="hours-note">There is no early entry anymore, so 8:00 means 8:00 for every single person in that park. If you want The Four before the wait times go stupid, be standing at the turnstiles around 7:15.</p>
     </div>
 
-    <div class="chapter-body">
-      <p>We start on the Disneyland side at rope drop, and the first thing we do is The Four. Family tradition, in this order, before anything else. They sit in one tight loop so we never double back. Come along or catch up with us after.</p>
-      <ul class="four-list">
-        <li>1. Jungle Cruise</li>
-        <li>2. Pirates</li>
-        <li>3. Haunted Mansion</li>
-        <li>4. Big Thunder</li>
-      </ul>
-      <p>Once those four are done, Disneyland is yours for the rest of the morning. Sometime after lunch we walk across the esplanade to California Adventure, and that is where we finish. We are closing that park out at 9:00, Cars Land lit up and all.</p>
-      <p>The reason California Adventure gets the whole back half of today is that tomorrow it locks us out at 6pm for a party we do not have tickets to. Anything you want on that side, today is the day for it.</p>
-    </div>
+    <h2 class="sked-title story">Where the birthday boy will be</h2>
+    <p class="sked-intro">This is my day, start to finish. None of it is a summons. If something on this list sounds good, come find me and jump in. If it doesn&rsquo;t, go do the thing you actually want to do and I&rsquo;ll catch you later.</p>
+
+    <ol class="sked">
+      <li>
+        <span class="t">7:15am</span>
+        <span class="w">
+          <b>At the Disneyland turnstiles</b>
+          There is no early entry anymore, so 8:00 means 8:00 for every single person in that park. Standing here early is the only edge there is.
+        </span>
+      </li>
+      <li>
+        <span class="t">8:00am</span>
+        <span class="w">
+          <b>Rope drop, straight into The Four</b>
+          Family tradition, in this order, before anything else. They sit in one tight loop so we never double back.
+          <ul class="four-list">
+            <li>1. Jungle Cruise</li>
+            <li>2. Pirates</li>
+            <li>3. Haunted Mansion</li>
+            <li>4. Big Thunder</li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="t">Late morning</span>
+        <span class="w">
+          <b>Loose in Disneyland</b>
+          Whatever is close to walk-on. Text me and I&rsquo;ll tell you where I&rsquo;m standing.
+        </span>
+      </li>
+      <li>
+        <span class="t">After lunch</span>
+        <span class="w">
+          <b>Across the esplanade to California Adventure</b>
+          Once I cross over, that is where I stay. Come with me or meet me over there.
+        </span>
+      </li>
+      <li>
+        <span class="t">Evening</span>
+        <span class="w">
+          <b>Closing California Adventure out</b>
+          Cars Land lit up and all. Tomorrow that park locks us out at 6pm for a party we don&rsquo;t have tickets to, so tonight is the only real shot at it.
+        </span>
+      </li>
+      <li>
+        <span class="t">9:00pm</span>
+        <span class="w">
+          <b>World of Color</b>
+          One showing, right at park close. It is back for the fall as World of Color &ndash; ONE, the version with the Star Wars and Avengers stuff in it. Stake out a spot 30 to 45 minutes early, because they stop letting people into the viewing area once it starts.
+        </span>
+      </li>
+      <li>
+        <span class="t">After the show</span>
+        <span class="w">
+          <b>Sneaking back over to Disneyland</b>
+          California Adventure is done for the night once World of Color ends, but Disneyland runs until 11:00. Odds are good we walk back across for the last hour. That park at night with half the crowd already gone home is the best hour of the day.
+        </span>
+      </li>
+    </ol>
 
     <div class="pager">
       <button type="button" class="btn ghost js-back">Back</button>
@@ -1396,10 +1532,10 @@
   <div class="chapter-inner">
 
     <div class="day-hero">
-      <p class="eyebrow">Day two &middot; the birthday</p>
+      <p class="eyebrow">Day two</p>
       <p class="day-big">20</p>
       <p class="day-dow-big">Sunday</p>
-      <p class="day-tag">Disneyland all day</p>
+      <p class="day-tag">The birthday</p>
     </div>
 
     <div class="flourish"><i></i></div>
@@ -1419,11 +1555,48 @@
       </ol>
     </section>
 
-    <div class="chapter-body">
-      <p>Disneyland park runs 8:00am to 11:00pm and we are in it all day. This is the day with the castle photo and the lunch, and past those two everybody scatters.</p>
-      <p>California Adventure closes to us at 6:00pm tonight, so do not save anything for over there.</p>
-      <p>At night we are watching Fantasmic on the Rivers of America. We did not buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.</p>
-    </div>
+    <h2 class="sked-title story">Where the birthday boy will be</h2>
+    <p class="sked-intro">Two of these I am actually asking for and they are marked. Everything else is just where to find me.</p>
+
+    <ol class="sked">
+      <li>
+        <span class="t">8:00am</span>
+        <span class="w">
+          <b>In Disneyland when it opens</b>
+          We are on this side all day, 8:00am to 11:00pm. California Adventure closes to us at 6:00pm tonight, so don&rsquo;t save anything for over there.
+        </span>
+      </li>
+      <li class="wish">
+        <span class="t"><span class="blank">time</span></span>
+        <span class="w">
+          <span class="tag-wish">Birthday wish</span>
+          <b>Castle photo, all sixteen of us</b>
+          In front of the castle, one frame, nobody off riding something.
+        </span>
+      </li>
+      <li class="wish">
+        <span class="t">12:20pm</span>
+        <span class="w">
+          <span class="tag-wish">Birthday wish</span>
+          <b>At the Cafe Orleans podium</b>
+          Be there at 12:20 even if your seating time says later.
+        </span>
+      </li>
+      <li>
+        <span class="t">Afternoon</span>
+        <span class="w">
+          <b>Loose in the park</b>
+          Past the photo and the lunch, everybody scatters. That is the whole point.
+        </span>
+      </li>
+      <li>
+        <span class="t">Night</span>
+        <span class="w">
+          <b>Fantasmic on the Rivers of America</b>
+          We didn&rsquo;t buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.
+        </span>
+      </li>
+    </ol>
 
     <div class="pager">
       <button type="button" class="btn ghost js-back">Back</button>
@@ -1446,6 +1619,7 @@
         <li><b>Haunted Mansion is wearing its Halloween costume.</b> Nightmare Before Christmas overlay, running all fall. Same ride, completely different, and a much longer line than usual. Ride it early or not at all.</li>
         <li><b>Sunday the 20th, California Adventure closes to us at 6pm.</b> There is a hard-ticket Halloween party that night and we do not have tickets. Anything you want over there, do it Saturday.</li>
         <li><b>There is no early entry anymore.</b> Disneyland ended it in January. Nobody gets in before 8:00, so the only real edge is being at the turnstiles early.</li>
+        <li><b>World of Color is back for the fall.</b> One showing on Saturday the 19th, 9:00pm, right at California Adventure&rsquo;s close. It is the ONE version, not the Happiness one that ran all summer.</li>
         <li><b>Everybody has a Park Hopper.</b> Move between the two parks any time of day. The old 11am rule is gone.</li>
         <li><b>Kids under 3 are free.</b> No ticket, no dining charge, no wristband.</li>
         <li><b>Download the Disneyland app before you fly.</b> Wait times, mobile food ordering, and the park map all live in there, and the wifi at the gate is miserable.</li>
