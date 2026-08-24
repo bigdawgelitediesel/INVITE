@@ -1170,6 +1170,76 @@
 
   .sheet .pager { margin-top: 4px; }
 
+  .breakfast { margin-top: 4px; }
+
+  .bfast-lead {
+    margin: 0 0 10px;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(20px, 5vw, 25px);
+    line-height: 1.25;
+    color: var(--gold);
+  }
+
+  .bfast-note {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .appcard {
+    background: var(--card);
+    border: 1px solid var(--gold-deep);
+    border-radius: 14px;
+    padding: 24px 22px 26px;
+    text-align: left;
+  }
+
+  .appcard .label {
+    margin: 0 0 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .app-lead {
+    margin: 0 0 10px;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(23px, 6vw, 30px);
+    line-height: 1.2;
+    color: var(--gold);
+  }
+
+  .app-note {
+    margin: 0 0 16px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .app-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .app-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .app-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
   .contact {
     background: var(--card);
     border: 1px solid var(--gold-deep);
@@ -1349,10 +1419,10 @@
     .intro-inner h1, .checkin-inner h1, .ask h2, .section-title, .heads h2, .signoff,
     .day-num, .ask li::before, .one-ask strong, .gate-title,
     .stay-card .address, .rooms dt, .maplink,
-    .stay-card .when-time, .stay-card .when-day { color: #000 !important; text-shadow: none !important; }
+    .stay-card .when-time, .stay-card .when-day, .bfast-lead { color: #000 !important; text-shadow: none !important; }
     .maplink { border-color: #000 !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
-    .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label,
+    .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label, .bfast-note,
     .ask .why, .ask li .head, .ask li .detail, .ask li .detail b, .section-note, .note-label { color: #000 !important; }
     .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
@@ -1365,13 +1435,13 @@
     .pager, .day19-photo, .pagefw { display: none !important; }
     #day19::after { display: none !important; }
     .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
-    .hours, .ask, .heads, .contact { break-inside: avoid; }
-    .hours, .day-tag, .contact { background: #fff !important; border-color: #000 !important; }
+    .hours, .ask, .heads, .contact, .appcard { break-inside: avoid; }
+    .hours, .day-tag, .contact, .appcard { background: #fff !important; border-color: #000 !important; }
     .hours-list li { border-color: #000 !important; }
-    .day-big, .hours-big, .contact-num { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
+    .day-big, .hours-big, .contact-num, .app-lead { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
     .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi,
-    .contact .label, .contact-name { color: #000 !important; }
+    .contact .label, .contact-name, .appcard .label, .app-note, .app-list li { color: #000 !important; }
     .sked li { break-inside: avoid; border-color: #000 !important; }
     .sked-title, .sked-intro, .sked .t, .sked .w, .sked .w b, .tag-wish { color: #000 !important; }
     .sked-title { text-shadow: none !important; }
@@ -1476,6 +1546,12 @@
       </div>
     </div>
 
+    <div class="stay-card breakfast">
+      <p class="label">Breakfast, both mornings</p>
+      <p class="bfast-lead">Bagels, cereal, and muffins at the house on the 19th and the 20th.</p>
+      <p class="bfast-note">Grab and go. Nobody is cooking, nobody is waiting on anybody, and nobody is sitting down to a meal on a park morning. Eat it on your way out the door. If you are staying somewhere else and want to swing by for it, come get some.</p>
+    </div>
+
     <div class="rooms">
       <p class="label">Room assignments</p>
       <dl>
@@ -1546,7 +1622,7 @@
         <span class="t">7:15am</span>
         <span class="w">
           <b>At the Disneyland turnstiles</b>
-          There is no early entry anymore, so 8:00 means 8:00 for every single person in that park. Standing here early is the only edge there is.
+          There is no early entry anymore, so 8:00 means 8:00 for every single person in that park. Standing here early is the only edge there is. Grab a bagel or a muffin at the house on your way out, because we are not stopping for food.
         </span>
       </li>
       <li>
@@ -1644,7 +1720,7 @@
         <span class="t">8:00am</span>
         <span class="w">
           <b>In Disneyland when it opens</b>
-          We are on this side all day, 8:00am to 11:00pm. California Adventure closes to us at 6:00pm tonight, so don&rsquo;t save anything for over there.
+          We are on this side all day, 8:00am to 11:00pm. California Adventure closes to us at 6:00pm tonight, so don&rsquo;t save anything for over there. Breakfast is at the house again this morning, same grab-and-go spread.
         </span>
       </li>
       <li class="wish">
@@ -1705,7 +1781,6 @@
         <li><b>Fantasmic runs twice on the 20th.</b> 9:00pm and 10:30pm. We are going to the 10:30.</li>
         <li><b>Everybody has a Park Hopper.</b> Move between the two parks any time of day. The old 11am rule is gone.</li>
         <li><b>Kids under 3 are free.</b> No ticket, no dining charge, no wristband.</li>
-        <li><b>Download the Disneyland app before you fly.</b> Wait times, mobile food ordering, and the park map all live in there, and the wifi at the gate is miserable.</li>
       </ul>
     </section>
 
@@ -1721,6 +1796,19 @@
 <div class="step" id="sheet" hidden>
   <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="sheet">
+
+    <div class="appcard">
+      <p class="label">Do this before you fly</p>
+      <p class="app-lead">Download the Disneyland app.</p>
+      <p class="app-note">Then actually open it and poke around, because it does more than most people expect. Get it on your wifi at home. The signal at the turnstiles is miserable.</p>
+      <ul class="app-list">
+        <li>Live wait times for every ride in both parks</li>
+        <li>Mobile order food and treats, then walk up and grab them instead of standing in the counter line</li>
+        <li>The park map, with a dot showing where you actually are</li>
+        <li>Show times for Fantasmic, World of Color, and the parades</li>
+        <li>Your tickets and everybody&rsquo;s park passes in one place</li>
+      </ul>
+    </div>
 
     <div class="contact">
       <p class="label">If you need anything, before or while we&rsquo;re in the park</p>
