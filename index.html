@@ -483,23 +483,57 @@
   .ask li .head { font-size: 19px; font-weight: 800; line-height: 1.35; color: var(--cream); }
   .ask li .detail { font-size: 15.5px; line-height: 1.6; color: var(--muted); }
 
-  /* permission slip */
-  .freedom {
-    background: rgba(79, 214, 196, .07);
-    border: 1px solid rgba(79, 214, 196, .35);
+  /* the notice */
+  .notice {
+    background: rgba(88, 220, 201, .07);
+    border: 1px solid rgba(88, 220, 201, .38);
     border-radius: 14px;
-    padding: 26px 26px 28px;
+    padding: 30px 28px 32px;
   }
 
-  .freedom h3 {
-    margin: 0 0 14px;
-    font-family: "Berkshire Swash", Georgia, serif;
-    font-size: 24px;
+  .notice .eyebrow {
+    margin: 0 0 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     color: var(--teal);
   }
 
-  .freedom p { margin: 0 0 14px; font-size: 15.5px; max-width: 60ch; }
-  .freedom p:last-child { margin-bottom: 0; }
+  .notice h2 {
+    margin: 0 0 20px;
+    font-size: clamp(24px, 5.8vw, 34px);
+    color: var(--teal);
+    text-wrap: balance;
+  }
+
+  .notice p {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.72;
+    max-width: 60ch;
+  }
+
+  .notice p:last-child { margin-bottom: 0; }
+
+  .notice .one-ask {
+    margin-top: 24px;
+    border-left: 3px solid var(--gold);
+    background: rgba(245, 200, 106, .09);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px 20px;
+  }
+
+  .notice .one-ask strong {
+    display: block;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-weight: 400;
+    font-size: 21px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .notice .one-ask p { margin: 0; font-size: 15.5px; color: var(--cream); }
 
   .section-title {
     margin: 10px 0 -12px;
@@ -699,13 +733,13 @@
     .masthead-copy { padding: 26px 24px !important; }
     #sheet { display: block !important; }
     .sheet { max-width: none; padding: 0; gap: 16px; }
-    .masthead, .ask, .freedom, .day, .heads { break-inside: avoid; }
-    .masthead, .ask, .freedom, .day, .heads, .day-head {
+    .masthead, .ask, .notice, .day, .heads { break-inside: avoid; }
+    .masthead, .ask, .notice, .day, .heads, .day-head, .notice .one-ask {
       background: #fff !important; border-color: #000 !important;
     }
     .masthead h1, .ask h2, .section-title, .heads h2, .signoff, .day-num,
-    .ask li::before, .freedom h3, .gate-title { color: #000 !important; text-shadow: none !important; }
-    .masthead .eyebrow, .masthead .dates, .freedom p, .day-body p, .heads li,
+    .ask li::before, .notice h2, .notice .one-ask strong, .gate-title { color: #000 !important; text-shadow: none !important; }
+    .masthead .eyebrow, .masthead .dates, .notice p, .notice .eyebrow, .day-body p, .heads li,
     .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
     .masthead .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
@@ -777,9 +811,21 @@
       </div>
     </header>
 
+    <section class="notice">
+      <p class="eyebrow">Read this before anything else</p>
+      <h2 class="story">From here on out, your trip is yours</h2>
+      <p>Everything past this page is a suggestion, not a schedule. There are a couple of birthday wishes and a few things already on the books, but nobody is obligated to a single one of them.</p>
+      <p>These two days are for fun and magic. If the group is off doing something you have no interest in, go do the thing you actually want to do instead. Sleep in. Split off. Ride the same ride four times in a row. Take the babies back to the hotel in the afternoon. Nobody is counting heads and nobody is going to be offended.</p>
+      <p>We do not all have to stay together to have a good trip. Plan around what you love, not around what everybody else happened to pick.</p>
+      <div class="one-ask">
+        <strong>The one thing I do ask</strong>
+        <p>If you are not joining the lunch reservation, tell me ahead of time, not that morning. The seats are booked and held under our name, and empty chairs still get charged.</p>
+      </div>
+    </section>
+
     <section class="ask">
       <h2 class="story">Two things, and that&rsquo;s the whole birthday wish</h2>
-      <p class="why">Sunday the 20th is my birthday. I am not asking anybody to follow an itinerary. I am asking for these two, and then you are free.</p>
+      <p class="why">Sunday the 20th is my birthday. These two are the entire ask, and past them you are free.</p>
       <ol>
         <li>
           <span class="head">A picture in front of the castle, all of us, Sunday morning.</span>
@@ -790,12 +836,6 @@
           <span class="detail">12:20pm, New Orleans Square. Sixteen of us had to go in as three reservations, so please be at the podium at 12:20 even if your seating time says later. They cannot hold tables for people who have not shown up yet.</span>
         </li>
       </ol>
-    </section>
-
-    <section class="freedom">
-      <h3>Consider this your permission slip</h3>
-      <p>What follows is just where we will probably be. It is not a schedule you owe anybody. Sleep in, split off, go back to the hotel in the middle of the day, skip a park entirely. Nobody is counting heads and nobody will be offended.</p>
-      <p>If you want to tag along with the group, this is how to find us. If you would rather go wander off and find your own trouble, go find it. That is genuinely the point of bringing everybody.</p>
     </section>
 
     <h2 class="section-title story">Where you&rsquo;ll find us</h2>
