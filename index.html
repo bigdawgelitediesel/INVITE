@@ -336,24 +336,65 @@
 
   .welcome button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-  /* masthead with the castle */
+  /* masthead: castle photograph fading into the night */
   .masthead {
     position: relative;
+    isolation: isolate;
     border: 1px solid var(--edge);
     border-radius: 14px;
-    background: linear-gradient(180deg, var(--card-hi) 0%, var(--card) 100%);
-    padding: 36px 26px 0;
     overflow: hidden;
+    background: var(--card);
+    min-height: clamp(430px, 74vh, 620px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     text-align: center;
+  }
+
+  .masthead-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 26%;
+    filter: saturate(.82) brightness(.92);
+  }
+
+  .masthead::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(36, 43, 112, .30) 0%,
+      rgba(30, 36, 96, .34) 32%,
+      rgba(25, 30, 82, .80) 62%,
+      rgba(25, 30, 82, .97) 84%,
+      var(--card) 100%
+    );
+  }
+
+  #mastfw {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2;
+    width: 100%;
+    height: 58%;
+    opacity: .8;
+  }
+
+  .masthead-copy {
+    position: relative;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    padding: 0 24px 32px;
   }
-
-  #mastfw { position: absolute; inset: 0 0 auto; width: 100%; height: 62%; opacity: .65; }
-
-  .masthead > *:not(#mastfw) { position: relative; z-index: 2; }
 
   .masthead .eyebrow {
     margin: 0;
@@ -393,15 +434,6 @@
     border: 1px solid var(--gold-deep);
     border-radius: 999px;
     padding: 6px 14px;
-  }
-
-  .castle {
-    display: block;
-    width: 100%;
-    max-width: 460px;
-    height: auto;
-    margin-top: 10px;
-    color: var(--deep);
   }
 
   /* the two asks */
@@ -661,7 +693,10 @@
 
   @media print {
     html, body { background: #fff !important; color: #000; }
-    #gate, #party, #rabbit, #stars, .welcome, #mastfw { display: none !important; }
+    #gate, #party, #rabbit, #stars, .welcome, #mastfw, .masthead-photo { display: none !important; }
+    .masthead { min-height: 0 !important; }
+    .masthead::after { display: none !important; }
+    .masthead-copy { padding: 26px 24px !important; }
     #sheet { display: block !important; }
     .sheet { max-width: none; padding: 0; gap: 16px; }
     .masthead, .ask, .freedom, .day, .heads { break-inside: avoid; }
@@ -675,7 +710,6 @@
     .masthead .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
     }
-    .castle { color: #000 !important; }
   }
 </style>
 
@@ -729,32 +763,18 @@
     </p>
 
     <header class="masthead">
+      <img class="masthead-photo" src="castle.jpg" alt="" aria-hidden="true">
       <canvas id="mastfw" aria-hidden="true"></canvas>
-      <p class="eyebrow">You&rsquo;re invited</p>
-      <h1 class="story">The Disney Trip</h1>
-      <p class="dates">Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
-      <ul class="tally">
-        <li>16 of us</li>
-        <li>2 days together</li>
-        <li>Park Hoppers all around</li>
-      </ul>
-      <svg class="castle" viewBox="0 0 460 150" fill="currentColor" aria-hidden="true">
-        <polygon points="60,74 68,50 76,74"/><rect x="60" y="74" width="16" height="76"/>
-        <polygon points="96,60 106,26 116,60"/><rect x="96" y="60" width="20" height="90"/>
-        <polygon points="140,54 152,14 164,54"/><rect x="140" y="54" width="24" height="96"/>
-        <polygon points="196,40 214,0 232,40"/><rect x="196" y="40" width="36" height="110"/>
-        <polygon points="256,52 268,12 280,52"/><rect x="256" y="52" width="24" height="98"/>
-        <polygon points="304,62 314,28 324,62"/><rect x="304" y="62" width="20" height="88"/>
-        <polygon points="346,72 354,48 362,72"/><rect x="346" y="72" width="16" height="78"/>
-        <rect x="76" y="98" width="64" height="52"/>
-        <rect x="164" y="86" width="32" height="64"/>
-        <rect x="232" y="86" width="24" height="64"/>
-        <rect x="280" y="100" width="24" height="50"/>
-        <rect x="324" y="106" width="22" height="44"/>
-        <rect x="30" y="126" width="30" height="24"/>
-        <rect x="362" y="122" width="34" height="28"/>
-        <rect x="396" y="134" width="26" height="16"/>
-      </svg>
+      <div class="masthead-copy">
+        <p class="eyebrow">You&rsquo;re invited</p>
+        <h1 class="story">The Disney Trip</h1>
+        <p class="dates">Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
+        <ul class="tally">
+          <li>16 of us</li>
+          <li>2 days together</li>
+          <li>Park Hoppers all around</li>
+        </ul>
+      </div>
     </header>
 
     <section class="ask">

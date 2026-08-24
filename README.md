@@ -34,3 +34,7 @@ and accepts either a full listed name or just its first word.
 
 This is a doorman, not a lock. The names live in the page source, so anyone determined
 could read them. Fine for family. Do not treat it as security.
+
+## Credits
+
+`castle.jpg` is a Pexels photo by Poppy Martinez, free to use.
