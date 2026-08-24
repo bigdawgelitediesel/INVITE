@@ -965,6 +965,208 @@
     .btn { transition: none !important; }
   }
 
+  /* ================= chapter pages 6 - 9 ================= */
+
+  /* strictly descending so each page lifts to reveal the one beneath,
+     and a Back slides the page above back down over the top */
+  #party   { z-index: 28; }
+  #rabbit  { z-index: 27; }
+  #intro   { z-index: 26; }
+  #checkin { z-index: 25; }
+  #day19   { z-index: 24; }
+  #day20   { z-index: 23; }
+  #fine    { z-index: 22; }
+  #sheet   { position: fixed; z-index: 21; }
+
+  .step.nomo { transition: none !important; }
+
+  .day19-photo {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 34%;
+    filter: saturate(.78) brightness(.62);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #day19::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(36, 43, 112, .52) 0%,
+      rgba(28, 34, 92, .78) 22%,
+      rgba(25, 30, 82, .93) 46%,
+      rgba(25, 30, 82, .97) 100%
+    );
+  }
+
+  .chapter-inner {
+    position: relative;
+    z-index: 3;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(34px, 8vh, 72px) 20px 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .chapter-inner > * { width: 100%; }
+  .chapter-inner > .flourish, .chapter-inner > .pager { width: auto; }
+
+  .chapter-inner .eyebrow,
+  .sheet .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-align: center;
+  }
+
+  .day-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .day-big {
+    margin: 4px 0 0;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(86px, 24vw, 168px);
+    line-height: .82;
+    color: var(--gold);
+    text-shadow: 0 4px 44px rgba(245, 200, 106, .4);
+  }
+
+  .day-dow-big {
+    margin: 0;
+    font-size: clamp(15px, 4.2vw, 21px);
+    font-weight: 800;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .day-tag {
+    margin: 8px 0 0;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: rgba(240, 195, 92, .1);
+    border: 1px solid var(--gold-deep);
+    color: var(--gold);
+  }
+
+  .hours {
+    background: var(--card);
+    border: 1px solid var(--gold-deep);
+    border-radius: 14px;
+    padding: 24px 24px 26px;
+  }
+
+  .hours .label {
+    margin: 0 0 2px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .hours-big {
+    margin: 0 0 18px;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(34px, 9vw, 48px);
+    line-height: 1.05;
+    color: var(--gold);
+  }
+
+  .hours-list { margin: 0; padding: 0; list-style: none; }
+
+  .hours-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2px 14px;
+    padding: 11px 0;
+    border-top: 1px solid var(--edge);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .hours-list li b { color: var(--cream); font-weight: 800; white-space: nowrap; }
+
+  .hours-note {
+    margin: 16px 0 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .chapter-body p {
+    margin: 0 0 16px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .chapter-body p:last-child { margin-bottom: 0; }
+  .chapter-body .four-list { margin-bottom: 18px; }
+
+  .pager {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 14px;
+    margin-top: 26px;
+  }
+
+  .pager .btn { margin-top: 0 !important; }
+
+  .btn.ghost {
+    background: none;
+    color: var(--gold);
+    border: 1px solid var(--gold-deep);
+    box-shadow: none;
+    padding: 14px 30px;
+  }
+
+  .btn.ghost:hover {
+    background: rgba(240, 195, 92, .12);
+    box-shadow: none;
+  }
+
+  .sheet .pager { margin-top: 4px; }
+
+  #sheet .sheet {
+    padding: clamp(48px, 13vh, 104px) 20px 88px;
+    align-items: center;
+  }
+
+  #sheet .notes, #sheet .center, #sheet .signoff, #sheet .eyebrow { width: 100%; }
+
+  #sheet .notes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
   /* ================= print ================= */
 
   @media print {
@@ -995,6 +1197,20 @@
     .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
     }
+
+    /* the paged chapters */
+    #day19, #day20, #fine, #sheet {
+      position: static !important; overflow: visible !important; display: block !important;
+    }
+    .pager, .day19-photo { display: none !important; }
+    #day19::after { display: none !important; }
+    .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
+    .hours, .ask, .heads { break-inside: avoid; }
+    .hours, .day-tag { background: #fff !important; border-color: #000 !important; }
+    .hours-list li { border-color: #000 !important; }
+    .day-big, .hours-big { color: #000 !important; text-shadow: none !important; }
+    .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
+    .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow { color: #000 !important; }
   }
 </style>
 
@@ -1023,7 +1239,7 @@
   <div class="party-copy">
     <h1 class="story">Be Our Guest</h1>
     <p class="who" id="party-name"></p>
-    <button type="button" class="btn" id="enter-btn">Come on in</button>
+    <button type="button" class="btn js-next" id="enter-btn">Come on in</button>
   </div>
 </div>
 
@@ -1036,7 +1252,7 @@
     <p class="body">Turning thirty could have been a quiet dinner and one candle on a cake. Instead sixteen of us are boarding planes and pointing trucks across state lines, all so we can end up in the one place where a tale as old as time still gets told every single night.</p>
     <p class="body">I could not have picked better people to go chasing that with. Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
     <p class="rabbit-sign">Jacob</p>
-    <button type="button" class="btn" id="continue-btn">Continue</button>
+    <div class="pager"><button type="button" class="btn ghost js-back">Back</button><button type="button" class="btn js-next" id="continue-btn">Continue</button></div>
   </div>
 </div>
 
@@ -1067,7 +1283,7 @@
       </div>
     </div>
 
-    <button type="button" class="btn" id="intro-btn">Continue</button>
+    <div class="pager"><button type="button" class="btn ghost js-back">Back</button><button type="button" class="btn js-next" id="intro-btn">Continue</button></div>
 
   </div>
 </div>
@@ -1121,19 +1337,72 @@
 
     <p class="checkin-note">Booked your own place instead? Nothing here applies to you. Keep going.</p>
 
-    <button type="button" class="btn" id="checkin-btn">Continue</button>
+    <div class="pager"><button type="button" class="btn ghost js-back">Back</button><button type="button" class="btn js-next" id="checkin-btn">Continue</button></div>
 
   </div>
 </div>
 
-<!-- ================= 6. THE PLANS ================= -->
-<div id="sheet" hidden>
-  <div class="sheet">
+<!-- ================= 6. SATURDAY THE 19TH ================= -->
+<div class="step" id="day19" hidden>
+  <img class="day19-photo" src="day19.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'">
+  <div class="chapter-inner">
 
     <p class="welcome">
       <span>Glad you made it, <b id="greet-name">friend</b>.</span>
       <button type="button" id="reset-btn">Not you?</button>
     </p>
+
+    <div class="day-hero">
+      <p class="eyebrow">Day one &middot; where you&rsquo;ll find us</p>
+      <p class="day-big">19</p>
+      <p class="day-dow-big">Saturday</p>
+      <p class="day-tag">Both parks</p>
+    </div>
+
+    <div class="flourish"><i></i></div>
+
+    <div class="hours">
+      <p class="label">Gates open</p>
+      <p class="hours-big">8:00 am</p>
+      <ul class="hours-list">
+        <li><span>Disneyland Park</span><b>8:00am &ndash; 11:00pm</b></li>
+        <li><span>California Adventure</span><b>8:00am &ndash; 9:00pm</b></li>
+      </ul>
+      <p class="hours-note">There is no early entry anymore, so 8:00 means 8:00 for every single person in that park. If you want The Four before the wait times go stupid, be standing at the turnstiles around 7:15.</p>
+    </div>
+
+    <div class="chapter-body">
+      <p>We start on the Disneyland side at rope drop, and the first thing we do is The Four. Family tradition, in this order, before anything else. They sit in one tight loop so we never double back. Come along or catch up with us after.</p>
+      <ul class="four-list">
+        <li>1. Jungle Cruise</li>
+        <li>2. Pirates</li>
+        <li>3. Haunted Mansion</li>
+        <li>4. Big Thunder</li>
+      </ul>
+      <p>Once those four are done, Disneyland is yours for the rest of the morning. Sometime after lunch we walk across the esplanade to California Adventure, and that is where we finish. We are closing that park out at 9:00, Cars Land lit up and all.</p>
+      <p>The reason California Adventure gets the whole back half of today is that tomorrow it locks us out at 6pm for a party we do not have tickets to. Anything you want on that side, today is the day for it.</p>
+    </div>
+
+    <div class="pager">
+      <button type="button" class="btn ghost js-back">Back</button>
+      <button type="button" class="btn js-next">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= 7. SUNDAY THE 20TH ================= -->
+<div class="step" id="day20" hidden>
+  <div class="chapter-inner">
+
+    <div class="day-hero">
+      <p class="eyebrow">Day two &middot; the birthday</p>
+      <p class="day-big">20</p>
+      <p class="day-dow-big">Sunday</p>
+      <p class="day-tag">Disneyland all day</p>
+    </div>
+
+    <div class="flourish"><i></i></div>
 
     <section class="ask">
       <h2 class="story">Two things, and that&rsquo;s the whole birthday wish</h2>
@@ -1150,38 +1419,25 @@
       </ol>
     </section>
 
-    <h2 class="section-title story">Where you&rsquo;ll find us</h2>
-    <p class="section-note">Loose plans, subject to weather, naps, and whoever is hungry.</p>
+    <div class="chapter-body">
+      <p>Disneyland park runs 8:00am to 11:00pm and we are in it all day. This is the day with the castle photo and the lunch, and past those two everybody scatters.</p>
+      <p>California Adventure closes to us at 6:00pm tonight, so do not save anything for over there.</p>
+      <p>At night we are watching Fantasmic on the Rivers of America. We did not buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.</p>
+    </div>
 
-    <section class="day">
-      <div class="day-head">
-        <span class="day-num">19</span>
-        <span class="day-dow">Saturday</span>
-        <span class="day-who">Both parks</span>
-      </div>
-      <div class="day-body">
-        <p>Disneyland in the morning, California Adventure the rest of the day. We shift over to California Adventure early because Sunday shuts us out of that park at 6pm, so this is the day for it.</p>
-        <p>First thing at rope drop we do The Four. Family tradition, in this order, before anything else. They sit in one loop so we never double back. Come along or meet us after.</p>
-        <ul class="four-list">
-          <li>1. Jungle Cruise</li>
-          <li>2. Pirates</li>
-          <li>3. Haunted Mansion</li>
-          <li>4. Big Thunder</li>
-        </ul>
-      </div>
-    </section>
+    <div class="pager">
+      <button type="button" class="btn ghost js-back">Back</button>
+      <button type="button" class="btn js-next">Continue</button>
+    </div>
 
-    <section class="day">
-      <div class="day-head">
-        <span class="day-num">20</span>
-        <span class="day-dow">Sunday</span>
-        <span class="day-who">The birthday</span>
-      </div>
-      <div class="day-body">
-        <p>All day in Disneyland park. This is the day with the castle photo and the lunch, and past those two everybody scatters.</p>
-        <p>At night we are watching Fantasmic on the Rivers of America. We did not buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.</p>
-      </div>
-    </section>
+  </div>
+</div>
+
+<!-- ================= 8. THE FINE PRINT ================= -->
+<div class="step" id="fine" hidden>
+  <div class="chapter-inner">
+
+    <p class="eyebrow">Before you pack</p>
 
     <section class="heads">
       <h2 class="story">The fine print, from one traveler to another</h2>
@@ -1189,12 +1445,26 @@
         <li><b>Indiana Jones is closed.</b> Went down September 8 with no reopening date announced. Do not plan a morning around it.</li>
         <li><b>Haunted Mansion is wearing its Halloween costume.</b> Nightmare Before Christmas overlay, running all fall. Same ride, completely different, and a much longer line than usual. Ride it early or not at all.</li>
         <li><b>Sunday the 20th, California Adventure closes to us at 6pm.</b> There is a hard-ticket Halloween party that night and we do not have tickets. Anything you want over there, do it Saturday.</li>
-        <li><b>There is no early entry anymore.</b> Disneyland ended it in January. Nobody gets in before opening, so the only real edge is being at the turnstiles early.</li>
+        <li><b>There is no early entry anymore.</b> Disneyland ended it in January. Nobody gets in before 8:00, so the only real edge is being at the turnstiles early.</li>
         <li><b>Everybody has a Park Hopper.</b> Move between the two parks any time of day. The old 11am rule is gone.</li>
         <li><b>Kids under 3 are free.</b> No ticket, no dining charge, no wristband.</li>
         <li><b>Download the Disneyland app before you fly.</b> Wait times, mobile food ordering, and the park map all live in there, and the wifi at the gate is miserable.</li>
       </ul>
     </section>
+
+    <div class="pager">
+      <button type="button" class="btn ghost js-back">Back</button>
+      <button type="button" class="btn js-next">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= 9. THE LAST PAGE ================= -->
+<div class="step" id="sheet" hidden>
+  <div class="sheet">
+
+    <p class="eyebrow">Fill these in when you know them</p>
 
     <section class="notes">
       <div>
@@ -1217,6 +1487,10 @@
 
     <div class="center"><div class="flourish"><i></i></div></div>
     <p class="signoff">Hakuna Matata. See you out there.</p>
+
+    <div class="pager">
+      <button type="button" class="btn ghost js-back">Back</button>
+    </div>
 
   </div>
 </div>
@@ -1260,12 +1534,8 @@
   var msg       = document.getElementById("gate-msg");
   var greet     = document.getElementById("greet-name");
   var partyName = document.getElementById("party-name");
-  var enterBtn  = document.getElementById("enter-btn");
-  var contBtn   = document.getElementById("continue-btn");
-  var introBtn  = document.getElementById("intro-btn");
   var intro     = document.getElementById("intro");
   var checkin   = document.getElementById("checkin");
-  var checkinBtn= document.getElementById("checkin-btn");
   var resetBtn  = document.getElementById("reset-btn");
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1460,86 +1730,122 @@
   }
 
   var bigShow = null, ambient = null;
-  var handedOff = false;
 
-  /* ---------------- chapter transitions ---------------- */
+  /* ---------------- chapter machine ----------------
+     Pages run in a fixed order and stack in descending z-index, so
+     Continue lifts the current page away to reveal the next one
+     beneath it, and Back drops the previous page back down over top.
+     Every page except the first one has a Back.
+  --------------------------------------------------- */
 
-  function swipeUp(from, next) {
-    if (reduced || from.hidden) { from.hidden = true; next(); return; }
-    from.classList.add("lift");
-    setTimeout(function () {
+  var day19 = document.getElementById("day19");
+  var day20 = document.getElementById("day20");
+  var fine  = document.getElementById("fine");
+
+  var CHAPTERS = [party, rabbit, intro, checkin, day19, day20, fine, sheet];
+
+  var here = -1;
+  var busy = false;
+
+  function startAmbient() {
+    if (reduced || ambient) return;
+    ambient = Fireworks(document.getElementById("mastfw"), { rate: 2400, burst: 44, trail: 0.22 });
+    ambient.start(1);
+  }
+
+  function stopAmbient() {
+    if (ambient) { ambient.stop(); ambient = null; }
+  }
+
+  function startShow() {
+    if (reduced || bigShow) return;
+    bigShow = Fireworks(document.getElementById("fw"), { rate: 420, burst: 90, trail: 0.14 });
+    bigShow.start(4);
+  }
+
+  function stopShow() {
+    if (bigShow) { bigShow.stop(); bigShow = null; }
+  }
+
+  function enter(i) {
+    var el = CHAPTERS[i];
+    el.hidden = false;
+    el.scrollTop = 0;
+    here = i;
+    if (el === intro) { startAmbient(); } else { stopAmbient(); }
+    if (el === party) { startShow(); } else { stopShow(); }
+  }
+
+  function move(delta) {
+    if (busy) return;
+    var next = here + delta;
+    if (next < 0 || next >= CHAPTERS.length) return;
+
+    var from = CHAPTERS[here];
+    var to   = CHAPTERS[next];
+
+    if (reduced) {
       from.hidden = true;
-      from.classList.remove("lift");
-      next();
-    }, LIFT_MS);
-  }
-
-  function openSheet(name) {
-    greet.textContent = name;
-    sheet.hidden = false;
-    window.scrollTo(0, 0);
-  }
-
-  function openCheckin(name) {
-    var leaving = false;
-    checkin.hidden = false;
-    checkin.scrollTop = 0;
-    checkinBtn.addEventListener("click", function () {
-      if (leaving) return;
-      leaving = true;
-      swipeUp(checkin, function () { openSheet(name); });
-    });
-  }
-
-  function openIntro(name) {
-    var leaving = false;
-    intro.hidden = false;
-    intro.scrollTop = 0;
-    if (!reduced && !ambient) {
-      ambient = Fireworks(document.getElementById("mastfw"), { rate: 2400, burst: 44, trail: 0.22 });
-      ambient.start(1);
+      enter(next);
+      window.scrollTo(0, 0);
+      return;
     }
-    introBtn.addEventListener("click", function () {
-      if (leaving) return;
-      leaving = true;
-      swipeUp(intro, function () {
-        if (ambient) { ambient.stop(); ambient = null; }
-        openCheckin(name);
-      });
-    });
+
+    busy = true;
+
+    if (delta < 0) {
+      /* the page we are going back to sits above this one, so park it
+         off the top with no transition, then let it slide down */
+      to.classList.add("nomo", "lift");
+      enter(next);
+      void to.offsetWidth;
+      to.classList.remove("nomo");
+      void to.offsetWidth;
+      to.classList.remove("lift");
+      setTimeout(function () {
+        from.hidden = true;
+        busy = false;
+      }, LIFT_MS);
+    } else {
+      enter(next);
+      from.classList.add("lift");
+      setTimeout(function () {
+        from.hidden = true;
+        from.classList.remove("lift");
+        busy = false;
+      }, LIFT_MS);
+    }
   }
 
-  function openRabbit(name) {
-    var leaving = false;
-    rabbit.hidden = false;
-    rabbit.scrollTop = 0;
-    contBtn.addEventListener("click", function () {
-      if (leaving) return;
-      leaving = true;
-      swipeUp(rabbit, function () { openIntro(name); });
-    });
-  }
+  document.addEventListener("click", function (event) {
+    var t = event.target;
+    if (!t || !t.classList) return;
+    if (t.classList.contains("js-next")) { move(1); }
+    else if (t.classList.contains("js-back")) { move(-1); }
+  });
+
+  /* arrow keys work too, as long as nobody is typing */
+  document.addEventListener("keydown", function (event) {
+    if (here < 0) return;
+    var tag = (event.target && event.target.tagName) || "";
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    if (event.key === "ArrowRight") { move(1); }
+    else if (event.key === "ArrowLeft") { move(-1); }
+  });
+
+  /* ---------------- the fireworks welcome ---------------- */
 
   function celebrate(name) {
+    greet.textContent = name;
     partyName.textContent = "Welcome aboard, " + name;
     gate.hidden = true;
-    party.hidden = false;
     put(SEEN_KEY, "1");
 
-    if (!reduced) {
-      bigShow = Fireworks(document.getElementById("fw"), { rate: 420, burst: 90, trail: 0.14 });
-      bigShow.start(4);
-    }
+    here = -1;
+    enter(0);
 
-    var moveOn = function () {
-      if (handedOff) return;
-      handedOff = true;
-      openRabbit(name);
-      swipeUp(party, function () { if (bigShow) bigShow.stop(); });
-    };
-
-    enterBtn.addEventListener("click", moveOn);
-    setTimeout(moveOn, 14000);
+    /* if they just stand there and watch, move them along once */
+    setTimeout(function () { if (here === 0) { move(1); } }, 14000);
   }
 
   /* ---------------- events ---------------- */
@@ -1560,13 +1866,14 @@
   resetBtn.addEventListener("click", function () {
     del(STORE_KEY);
     del(SEEN_KEY);
-    if (ambient) { ambient.stop(); ambient = null; }
-    handedOff = false;
-    sheet.hidden = true;
-    checkin.hidden = true;
-    intro.hidden = true;
-    rabbit.hidden = true;
-    party.hidden = true;
+    stopAmbient();
+    stopShow();
+    busy = false;
+    here = -1;
+    for (var i = 0; i < CHAPTERS.length; i++) {
+      CHAPTERS[i].hidden = true;
+      CHAPTERS[i].classList.remove("lift", "nomo");
+    }
     gate.hidden = false;
     input.value = "";
     msg.textContent = "";
@@ -1578,8 +1885,10 @@
   var saved = get(STORE_KEY);
   var known = saved ? findGuest(saved) : null;
   if (known) {
+    greet.textContent = known;
+    partyName.textContent = "Welcome aboard, " + known;
     gate.hidden = true;
-    if (get(SEEN_KEY)) { openIntro(known); } else { celebrate(known); }
+    if (get(SEEN_KEY)) { enter(2); } else { celebrate(known); }
   }
 })();
 </script>
