@@ -1159,6 +1159,8 @@
 
   /* ---- the "where I'll be" schedule ---- */
 
+  .ask li .detail b { color: var(--cream); font-weight: 800; }
+
   .sked-title {
     margin: 14px 0 0;
     font-size: clamp(23px, 5.6vw, 31px);
@@ -1205,6 +1207,8 @@
     color: var(--muted);
     min-width: 0;
   }
+
+  .sked .w .hi { font-style: normal; font-weight: 800; color: var(--gold); }
 
   .sked .w b {
     display: block;
@@ -1277,7 +1281,7 @@
     .maplink { border-color: #000 !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
     .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label,
-    .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
+    .ask .why, .ask li .head, .ask li .detail, .ask li .detail b, .section-note, .note-label { color: #000 !important; }
     .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
     }
@@ -1294,7 +1298,7 @@
     .hours-list li { border-color: #000 !important; }
     .day-big, .hours-big { color: #000 !important; text-shadow: none !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
-    .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow { color: #000 !important; }
+    .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi { color: #000 !important; }
     .sked li { break-inside: avoid; border-color: #000 !important; }
     .sked-title, .sked-intro, .sked .t, .sked .w, .sked .w b, .tag-wish { color: #000 !important; }
     .sked-title { text-shadow: none !important; }
@@ -1546,11 +1550,11 @@
       <ol>
         <li>
           <span class="head">A picture in front of the castle, all of us, Sunday morning.</span>
-          <span class="detail">Sunday the 20th, <span class="blank">time</span>, at the castle. Every last one of us in one frame. That is the one photo I want out of this whole trip, and it only works if nobody is off riding something.</span>
+          <span class="detail">First thing Sunday morning, at the castle. If somebody is moving slow and can&rsquo;t get out the door fast, we&rsquo;ll hold and do it whenever we are all in the park together instead. Every last one of us in one frame. That is the one photo I want out of this whole trip, and it only works if nobody is off riding something.</span>
         </li>
         <li>
           <span class="head">Lunch together at Cafe Orleans, same day.</span>
-          <span class="detail">12:20pm, New Orleans Square. Sixteen of us had to go in as three reservations, so please be at the podium at 12:20 even if your seating time says later. They cannot hold tables for people who have not shown up yet.</span>
+          <span class="detail">New Orleans Square, and the reservation is 12:20. Sixteen of us had to go in as three separate reservations, so <b>be at the podium at 12:10</b>, ten minutes early, even if your seating time says later. They cannot hold tables for people who have not shown up yet.</span>
         </li>
       </ol>
     </section>
@@ -1567,19 +1571,19 @@
         </span>
       </li>
       <li class="wish">
-        <span class="t"><span class="blank">time</span></span>
+        <span class="t">Morning</span>
         <span class="w">
           <span class="tag-wish">Birthday wish</span>
           <b>Castle photo, all sixteen of us</b>
-          In front of the castle, one frame, nobody off riding something.
+          First thing when we get in, or as soon as everybody has made it through the gate. If you are running behind that morning, just say so and we will wait on you. Nobody gets left out of this one.
         </span>
       </li>
       <li class="wish">
-        <span class="t">12:20pm</span>
+        <span class="t">12:10pm</span>
         <span class="w">
           <span class="tag-wish">Birthday wish</span>
           <b>At the Cafe Orleans podium</b>
-          Be there at 12:20 even if your seating time says later.
+          Ten minutes ahead of the 12:20 reservation, so nobody is the one holding up the table. Show up at 12:10 even if your seating time says later.
         </span>
       </li>
       <li>
@@ -1590,10 +1594,17 @@
         </span>
       </li>
       <li>
-        <span class="t">Night</span>
+        <span class="t">9:30pm</span>
+        <span class="w">
+          <b>Halloween Screams over the castle</b>
+          The Halloween fireworks, one showing. It lands in the gap between the two Fantasmic shows, so we can catch it and still make the late one.
+        </span>
+      </li>
+      <li>
+        <span class="t">10:30pm</span>
         <span class="w">
           <b>Fantasmic on the Rivers of America</b>
-          We didn&rsquo;t buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.
+          Two showings that night, 9:00 and 10:30, and we are going to <em class="hi">the late one</em>. It is the emptier of the two and it runs us right up against the 11:00 close, which is exactly how I want the birthday to end. We didn&rsquo;t buy the dining package, so a couple of us will go hold ground early and the rest can wander over whenever. Come if you want it, skip it if the kids are done.
         </span>
       </li>
     </ol>
@@ -1620,6 +1631,7 @@
         <li><b>Sunday the 20th, California Adventure closes to us at 6pm.</b> There is a hard-ticket Halloween party that night and we do not have tickets. Anything you want over there, do it Saturday.</li>
         <li><b>There is no early entry anymore.</b> Disneyland ended it in January. Nobody gets in before 8:00, so the only real edge is being at the turnstiles early.</li>
         <li><b>World of Color is back for the fall.</b> One showing on Saturday the 19th, 9:00pm, right at California Adventure&rsquo;s close. It is the ONE version, not the Happiness one that ran all summer.</li>
+        <li><b>Fantasmic runs twice on the 20th.</b> 9:00pm and 10:30pm. We are going to the 10:30. Halloween Screams, the Halloween fireworks, goes off at 9:30 in between the two.</li>
         <li><b>Everybody has a Park Hopper.</b> Move between the two parks any time of day. The old 11am rule is gone.</li>
         <li><b>Kids under 3 are free.</b> No ticket, no dining charge, no wristband.</li>
         <li><b>Download the Disneyland app before you fly.</b> Wait times, mobile food ordering, and the park map all live in there, and the wifi at the gate is miserable.</li>
