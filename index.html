@@ -508,7 +508,135 @@
   #intro .btn { margin-top: 34px; }
 
 
-  /* ================= 5. THE PLANS ================= */
+  /* ================= 5. CHECK IN ================= */
+
+  #checkin { z-index: 22; }
+
+  .checkin-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: clamp(48px, 12vh, 96px) 22px 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .checkin-inner .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .checkin-inner h1 {
+    margin: 0;
+    font-size: clamp(28px, 7vw, 46px);
+    color: var(--gold);
+    text-shadow: 0 2px 30px rgba(245, 200, 106, .34);
+    text-wrap: balance;
+  }
+
+  .checkin-inner .lead {
+    margin: 0;
+    font-size: 16.5px;
+    line-height: 1.7;
+    max-width: 48ch;
+    color: var(--cream);
+  }
+
+  .stay-card {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--card);
+    border: 1px solid var(--gold-deep);
+    border-radius: 14px;
+    padding: 26px 24px 28px;
+    text-align: left;
+  }
+
+  .stay-card .label {
+    margin: 0 0 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .stay-card .address {
+    margin: 0;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(21px, 5vw, 30px);
+    line-height: 1.3;
+    color: var(--cream);
+  }
+
+  .rooms {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 26px 24px 10px;
+    text-align: left;
+  }
+
+  .rooms > .label {
+    margin: 0 0 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .rooms dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(96px, max-content) 1fr;
+    gap: 0;
+  }
+
+  .rooms dt,
+  .rooms dd {
+    padding: 15px 0;
+    border-top: 1px solid var(--edge);
+  }
+
+  .rooms dt {
+    margin: 0;
+    padding-right: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    align-self: center;
+  }
+
+  .rooms dd {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--cream);
+  }
+
+  .checkin-note {
+    margin: 6px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 50ch;
+    color: var(--muted);
+  }
+
+  #checkin .btn { margin-top: 24px; }
+
+  /* ================= 6. THE PLANS ================= */
 
   #sheet { position: relative; z-index: 20; }
 
@@ -788,19 +916,24 @@
     html, body { background: #fff !important; color: #000; }
     #gate, #party, #rabbit, #stars, .welcome, #mastfw, .intro-photo, .gate-photo,
     .party-photo, #intro .btn { display: none !important; }
-    #intro { position: static !important; overflow: visible !important; }
+    #intro, #checkin { position: static !important; overflow: visible !important; }
+    #checkin .btn { display: none !important; }
+    .checkin-inner { max-width: none; padding: 20px 0 0; gap: 12px; }
     #intro::after { display: none !important; }
     .intro-inner { max-width: none; padding: 0 0 20px; gap: 12px; }
     .intro-prose { max-width: none; margin-top: 4px; }
     #sheet { display: block !important; }
     .sheet { max-width: none; padding: 0; gap: 16px; }
-    .ask, .day, .heads, .one-ask { break-inside: avoid; }
-    .ask, .day, .heads, .day-head, .one-ask, .intro-inner .tally li {
+    .ask, .day, .heads, .one-ask, .stay-card, .rooms { break-inside: avoid; }
+    .ask, .day, .heads, .day-head, .one-ask, .intro-inner .tally li,
+    .stay-card, .rooms {
       background: #fff !important; border-color: #000 !important;
     }
-    .intro-inner h1, .ask h2, .section-title, .heads h2, .signoff, .day-num,
-    .ask li::before, .one-ask strong, .gate-title { color: #000 !important; text-shadow: none !important; }
+    .intro-inner h1, .checkin-inner h1, .ask h2, .section-title, .heads h2, .signoff,
+    .day-num, .ask li::before, .one-ask strong, .gate-title,
+    .stay-card .address, .rooms dt { color: #000 !important; text-shadow: none !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
+    .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label,
     .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
     .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
@@ -882,7 +1015,38 @@
   </div>
 </div>
 
-<!-- ================= 5. THE PLANS ================= -->
+<!-- ================= 5. CHECK IN ================= -->
+<div class="step" id="checkin" hidden>
+  <div class="checkin-inner">
+
+    <p class="eyebrow">Check in</p>
+    <h1 class="story">If you&rsquo;re staying with us at the Airbnb, here is the address and room assignments</h1>
+
+    <div class="flourish"><i></i></div>
+
+    <div class="stay-card">
+      <p class="label">The house</p>
+      <p class="address"><span class="blank">address goes here</span></p>
+    </div>
+
+    <div class="rooms">
+      <p class="label">Room assignments</p>
+      <dl>
+        <dt>Room 1</dt><dd><span class="blank">&nbsp;</span></dd>
+        <dt>Room 2</dt><dd><span class="blank">&nbsp;</span></dd>
+        <dt>Room 3</dt><dd><span class="blank">&nbsp;</span></dd>
+        <dt>Room 4</dt><dd><span class="blank">&nbsp;</span></dd>
+      </dl>
+    </div>
+
+    <p class="checkin-note">Booked your own place instead? Nothing here applies to you. Keep going.</p>
+
+    <button type="button" class="btn" id="checkin-btn">Continue</button>
+
+  </div>
+</div>
+
+<!-- ================= 6. THE PLANS ================= -->
 <div id="sheet" hidden>
   <div class="sheet">
 
@@ -1008,6 +1172,8 @@
   var contBtn   = document.getElementById("continue-btn");
   var introBtn  = document.getElementById("intro-btn");
   var intro     = document.getElementById("intro");
+  var checkin   = document.getElementById("checkin");
+  var checkinBtn= document.getElementById("checkin-btn");
   var resetBtn  = document.getElementById("reset-btn");
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1222,6 +1388,17 @@
     window.scrollTo(0, 0);
   }
 
+  function openCheckin(name) {
+    var leaving = false;
+    checkin.hidden = false;
+    checkin.scrollTop = 0;
+    checkinBtn.addEventListener("click", function () {
+      if (leaving) return;
+      leaving = true;
+      swipeUp(checkin, function () { openSheet(name); });
+    });
+  }
+
   function openIntro(name) {
     var leaving = false;
     intro.hidden = false;
@@ -1235,7 +1412,7 @@
       leaving = true;
       swipeUp(intro, function () {
         if (ambient) { ambient.stop(); ambient = null; }
-        openSheet(name);
+        openCheckin(name);
       });
     });
   }
@@ -1294,6 +1471,7 @@
     if (ambient) { ambient.stop(); ambient = null; }
     handedOff = false;
     sheet.hidden = true;
+    checkin.hidden = true;
     intro.hidden = true;
     rabbit.hidden = true;
     party.hidden = true;
