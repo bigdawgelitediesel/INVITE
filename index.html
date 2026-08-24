@@ -322,6 +322,8 @@
   }
 
   .rabbit-inner {
+    position: relative;
+    z-index: 3;
     margin: auto;
     width: 100%;
     max-width: 640px;
@@ -517,7 +519,7 @@
 
   .checkin-inner {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     max-width: 660px;
     margin: 0 auto;
     padding: clamp(48px, 12vh, 96px) 22px 76px;
@@ -983,6 +985,17 @@
 
   .step.nomo { transition: none !important; }
 
+  /* ambient fireworks on every chapter, behind the words */
+  .step .pagefw {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 2;
+    width: 100%;
+    height: 56%;
+    opacity: .8;
+    pointer-events: none;
+  }
+
   .day19-photo {
     position: fixed;
     inset: 0;
@@ -1219,7 +1232,24 @@
     color: var(--cream);
   }
 
-  .sked .w .four-list { margin-top: 14px; }
+  /* The Four, as an even 2x2 so they never wrap ragged */
+  .sked .w .four-list {
+    margin: 15px 0 2px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .sked .w .four-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 10px;
+    text-align: center;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+  }
 
   .tag-wish {
     display: inline-block;
@@ -1243,6 +1273,8 @@
   }
 
   #sheet .sheet {
+    position: relative;
+    z-index: 3;
     padding: clamp(48px, 13vh, 104px) 20px 88px;
     align-items: center;
   }
@@ -1290,7 +1322,7 @@
     #day19, #day20, #fine, #sheet {
       position: static !important; overflow: visible !important; display: block !important;
     }
-    .pager, .day19-photo { display: none !important; }
+    .pager, .day19-photo, .pagefw { display: none !important; }
     #day19::after { display: none !important; }
     .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
     .hours, .ask, .heads { break-inside: avoid; }
@@ -1327,7 +1359,7 @@
 <!-- ================= 2. FIREWORKS ================= -->
 <div class="step" id="party" hidden>
   <img class="party-photo" src="guest.jpg" alt="" aria-hidden="true">
-  <canvas id="fw"></canvas>
+  <canvas id="fw" class="pagefw"></canvas>
   <div class="party-copy">
     <h1 class="story">Be Our Guest</h1>
     <p class="who" id="party-name"></p>
@@ -1337,6 +1369,7 @@
 
 <!-- ================= 3. RABBIT HOLE ================= -->
 <div class="step" id="rabbit" hidden>
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="rabbit-inner">
     <p class="rabbit-eyebrow">Curiouser and curiouser&hellip;</p>
     <h1 class="rabbit-head story">Thank you for following me down the rabbit hole on this next Disney adventure</h1>
@@ -1351,7 +1384,7 @@
 <!-- ================= 4. THE TRIP + THE NOTICE ================= -->
 <div class="step" id="intro" hidden>
   <img class="intro-photo" src="castle.jpg" alt="" aria-hidden="true">
-  <canvas id="mastfw" aria-hidden="true"></canvas>
+  <canvas id="mastfw" class="pagefw" aria-hidden="true"></canvas>
   <div class="intro-inner">
 
     <p class="eyebrow">You&rsquo;re invited</p>
@@ -1382,6 +1415,7 @@
 
 <!-- ================= 5. CHECK IN ================= -->
 <div class="step" id="checkin" hidden>
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="checkin-inner">
 
     <p class="eyebrow">Check in</p>
@@ -1437,6 +1471,7 @@
 <!-- ================= 6. SATURDAY THE 19TH ================= -->
 <div class="step" id="day19" hidden>
   <img class="day19-photo" src="day19.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'">
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="chapter-inner">
 
     <p class="welcome">
@@ -1533,6 +1568,7 @@
 
 <!-- ================= 7. SUNDAY THE 20TH ================= -->
 <div class="step" id="day20" hidden>
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="chapter-inner">
 
     <div class="day-hero">
@@ -1619,6 +1655,7 @@
 
 <!-- ================= 8. THE FINE PRINT ================= -->
 <div class="step" id="fine" hidden>
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="chapter-inner">
 
     <p class="eyebrow">Before you pack</p>
@@ -1648,6 +1685,7 @@
 
 <!-- ================= 9. THE LAST PAGE ================= -->
 <div class="step" id="sheet" hidden>
+  <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="sheet">
 
     <p class="eyebrow">Fill these in when you know them</p>
@@ -1915,7 +1953,6 @@
     };
   }
 
-  var bigShow = null, ambient = null;
 
   /* ---------------- chapter machine ----------------
      Pages run in a fixed order and stack in descending z-index, so
@@ -1933,24 +1970,33 @@
   var here = -1;
   var busy = false;
 
-  function startAmbient() {
-    if (reduced || ambient) return;
-    ambient = Fireworks(document.getElementById("mastfw"), { rate: 2400, burst: 44, trail: 0.22 });
-    ambient.start(1);
+  function indexOf(el) {
+    for (var i = 0; i < CHAPTERS.length; i++) { if (CHAPTERS[i] === el) return i; }
+    return -1;
   }
 
-  function stopAmbient() {
-    if (ambient) { ambient.stop(); ambient = null; }
+  /* one fireworks instance per page, so the outgoing page keeps
+     popping the whole way through the slide */
+  var shows = [];
+
+  function startFw(i) {
+    if (reduced || shows[i]) return;
+    var el = CHAPTERS[i];
+    var canvas = el.querySelector(".pagefw");
+    if (!canvas) return;
+    var big = (el === party);
+    shows[i] = Fireworks(canvas, big
+      ? { rate: 420,  burst: 90, trail: 0.14 }
+      : { rate: 2200, burst: 46, trail: 0.22 });
+    shows[i].start(big ? 4 : 1);
   }
 
-  function startShow() {
-    if (reduced || bigShow) return;
-    bigShow = Fireworks(document.getElementById("fw"), { rate: 420, burst: 90, trail: 0.14 });
-    bigShow.start(4);
+  function stopFw(i) {
+    if (shows[i]) { shows[i].stop(); shows[i] = null; }
   }
 
-  function stopShow() {
-    if (bigShow) { bigShow.stop(); bigShow = null; }
+  function stopAllFw() {
+    for (var i = 0; i < CHAPTERS.length; i++) { stopFw(i); }
   }
 
   function enter(i) {
@@ -1958,8 +2004,7 @@
     el.hidden = false;
     el.scrollTop = 0;
     here = i;
-    if (el === intro) { startAmbient(); } else { stopAmbient(); }
-    if (el === party) { startShow(); } else { stopShow(); }
+    startFw(i);
   }
 
   function move(delta) {
@@ -1972,6 +2017,7 @@
 
     if (reduced) {
       from.hidden = true;
+      stopFw(indexOf(from));
       enter(next);
       window.scrollTo(0, 0);
       return;
@@ -1990,6 +2036,7 @@
       to.classList.remove("lift");
       setTimeout(function () {
         from.hidden = true;
+        stopFw(indexOf(from));
         busy = false;
       }, LIFT_MS);
     } else {
@@ -1998,6 +2045,7 @@
       setTimeout(function () {
         from.hidden = true;
         from.classList.remove("lift");
+        stopFw(indexOf(from));
         busy = false;
       }, LIFT_MS);
     }
@@ -2052,8 +2100,7 @@
   resetBtn.addEventListener("click", function () {
     del(STORE_KEY);
     del(SEEN_KEY);
-    stopAmbient();
-    stopShow();
+    stopAllFw();
     busy = false;
     here = -1;
     for (var i = 0; i < CHAPTERS.length; i++) {
