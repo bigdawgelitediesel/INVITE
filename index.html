@@ -577,6 +577,27 @@
     color: var(--cream);
   }
 
+  .maplink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold-deep);
+    border-radius: 999px;
+    padding: 10px 20px;
+    transition: background .16s ease;
+  }
+
+  .maplink::after { content: "\2197"; font-size: 15px; line-height: 1; }
+  .maplink:hover { background: rgba(245, 200, 106, .12); }
+  .maplink:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
   .rooms {
     width: 100%;
     background: var(--card);
@@ -931,7 +952,8 @@
     }
     .intro-inner h1, .checkin-inner h1, .ask h2, .section-title, .heads h2, .signoff,
     .day-num, .ask li::before, .one-ask strong, .gate-title,
-    .stay-card .address, .rooms dt { color: #000 !important; text-shadow: none !important; }
+    .stay-card .address, .rooms dt, .maplink { color: #000 !important; text-shadow: none !important; }
+    .maplink { border-color: #000 !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
     .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label,
     .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
@@ -1026,7 +1048,8 @@
 
     <div class="stay-card">
       <p class="label">The house</p>
-      <p class="address"><span class="blank">address goes here</span></p>
+      <p class="address">1575 West Lullaby Lane<br>Anaheim, CA 92802</p>
+      <a class="maplink" href="https://maps.google.com/?q=1575+West+Lullaby+Lane+Anaheim+CA+92802" target="_blank" rel="noopener">Open in Maps</a>
     </div>
 
     <div class="rooms">
