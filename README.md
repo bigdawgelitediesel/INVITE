@@ -1,6 +1,6 @@
-# Family Mashup
+# Jacob's Dirty 30
 
-Birthday invitation site for Jacob's 30th at Disneyland Resort, September 19-23, 2026.
+Birthday invitation site for Jacob's 30th at Disneyland Resort. The group days are September 19 and 20, 2026.
 
 Single self-contained page. No build step, no dependencies, no external assets.
 Open `index.html` directly, or serve the folder from any static host.

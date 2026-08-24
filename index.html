@@ -1,4 +1,4 @@
-<title>Family Mashup 2026</title>
+<title>Jacob's Dirty 30</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Nunito:wght@400;600;700;800&display=swap">
@@ -200,6 +200,7 @@
   /* ================= 2. FIREWORKS ================= */
 
   #party {
+    align-items: flex-start;
     z-index: 40;
     display: flex;
     align-items: center;
@@ -212,6 +213,7 @@
   #fw { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
   .party-copy {
+    margin: auto;
     position: relative;
     z-index: 2;
     text-align: center;
@@ -244,6 +246,7 @@
   /* ================= 3. RABBIT HOLE ================= */
 
   #rabbit {
+    align-items: flex-start;
     z-index: 30;
     display: flex;
     align-items: center;
@@ -253,6 +256,7 @@
   }
 
   .rabbit-inner {
+    margin: auto;
     width: 100%;
     max-width: 640px;
     display: flex;
@@ -708,7 +712,7 @@
     <p class="rabbit-eyebrow">Curiouser and curiouser&hellip;</p>
     <h1 class="rabbit-head story">Thank you for following me down the rabbit hole on this next Disney adventure</h1>
     <div class="flourish"><i></i></div>
-    <p class="body">Turning thirty could have been a quiet dinner and one candle on a cake. Instead seventeen of us are boarding planes and pointing trucks across state lines, all so we can end up in the one place where a tale as old as time still gets told every single night.</p>
+    <p class="body">Turning thirty could have been a quiet dinner and one candle on a cake. Instead sixteen of us are boarding planes and pointing trucks across state lines, all so we can end up in the one place where a tale as old as time still gets told every single night.</p>
     <p class="body">I could not have picked better people to go chasing that with. Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
     <p class="rabbit-sign">Jacob</p>
     <button type="button" class="btn" id="continue-btn">Continue</button>
@@ -727,10 +731,10 @@
     <header class="masthead">
       <canvas id="mastfw" aria-hidden="true"></canvas>
       <p class="eyebrow">You&rsquo;re invited</p>
-      <h1 class="story">Family Mashup</h1>
-      <p class="dates">Jacob&rsquo;s Dirty 30 &middot; Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
+      <h1 class="story">Jacob&rsquo;s Dirty 30</h1>
+      <p class="dates">Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
       <ul class="tally">
-        <li>17 of us</li>
+        <li>16 of us</li>
         <li>2 days together</li>
         <li>Park Hoppers all around</li>
       </ul>
@@ -763,7 +767,7 @@
         </li>
         <li>
           <span class="head">Lunch together at Cafe Orleans, same day.</span>
-          <span class="detail">12:20pm, New Orleans Square. Seventeen of us had to go in as three reservations, so please be at the podium at 12:20 even if your seating time says later. They cannot hold tables for people who have not shown up yet.</span>
+          <span class="detail">12:20pm, New Orleans Square. Sixteen of us had to go in as three reservations, so please be at the podium at 12:20 even if your seating time says later. They cannot hold tables for people who have not shown up yet.</span>
         </li>
       </ol>
     </section>
@@ -1068,6 +1072,7 @@
   }
 
   var bigShow = null, ambient = null;
+  var handedOff = false;
 
   /* ---------------- chapter transitions ---------------- */
 
@@ -1092,15 +1097,18 @@
   }
 
   function openRabbit(name) {
+    var leaving = false;
     rabbit.hidden = false;
     rabbit.scrollTop = 0;
     contBtn.addEventListener("click", function () {
+      if (leaving) return;
+      leaving = true;
       swipeUp(rabbit, function () { openSheet(name); });
-    }, { once: true });
+    });
   }
 
   function celebrate(name) {
-    partyName.textContent = "Welcome to the Mashup, " + name;
+    partyName.textContent = "Welcome aboard, " + name;
     gate.hidden = true;
     party.hidden = false;
     put(SEEN_KEY, "1");
@@ -1111,12 +1119,14 @@
     }
 
     var moveOn = function () {
+      if (handedOff) return;
+      handedOff = true;
       openRabbit(name);
       swipeUp(party, function () { if (bigShow) bigShow.stop(); });
     };
 
-    enterBtn.addEventListener("click", moveOn, { once: true });
-    setTimeout(function () { if (!party.hidden && !party.classList.contains("lift")) moveOn(); }, 9000);
+    enterBtn.addEventListener("click", moveOn);
+    setTimeout(moveOn, 14000);
   }
 
   /* ---------------- events ---------------- */
@@ -1138,6 +1148,7 @@
     del(STORE_KEY);
     del(SEEN_KEY);
     if (ambient) { ambient.stop(); ambient = null; }
+    handedOff = false;
     sheet.hidden = true;
     rabbit.hidden = true;
     party.hidden = true;
