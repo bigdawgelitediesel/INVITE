@@ -328,7 +328,22 @@
     color: var(--ember);
   }
 
-  /* ================= 4. THE INVITE ================= */
+  /* ================= 4. THE TRIP + THE NOTICE ================= */
+
+  #intro { z-index: 25; }
+
+  .intro-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 26px 18px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  #intro .center { margin-top: 6px; }
+
+  /* ================= 5. THE PLANS ================= */
 
   #sheet { position: relative; z-index: 20; }
 
@@ -758,7 +773,10 @@
 
   @media print {
     html, body { background: #fff !important; color: #000; }
-    #gate, #party, #rabbit, #stars, .welcome, #mastfw, .masthead-photo { display: none !important; }
+    #gate, #party, #rabbit, #stars, .welcome, #mastfw, .masthead-photo, .gate-photo,
+    #intro .center { display: none !important; }
+    #intro { position: static !important; overflow: visible !important; }
+    .intro-inner { max-width: none; padding: 0 0 16px; gap: 16px; }
     .masthead { min-height: 0 !important; }
     .masthead::after { display: none !important; }
     .masthead-copy { padding: 26px 24px !important; }
@@ -819,14 +837,9 @@
   </div>
 </div>
 
-<!-- ================= 4. THE INVITE ================= -->
-<div id="sheet" hidden>
-  <div class="sheet">
-
-    <p class="welcome">
-      <span>Glad you made it, <b id="greet-name">friend</b>.</span>
-      <button type="button" id="reset-btn">Not you?</button>
-    </p>
+<!-- ================= 4. THE TRIP + THE NOTICE ================= -->
+<div class="step" id="intro" hidden>
+  <div class="intro-inner">
 
     <header class="masthead">
       <img class="masthead-photo" src="castle.jpg" alt="" aria-hidden="true">
@@ -854,6 +867,22 @@
         <p>If you are not joining the lunch reservation, tell me ahead of time, not that morning. The seats are booked and held under our name, and empty chairs still get charged.</p>
       </div>
     </section>
+
+    <div class="center">
+      <button type="button" class="btn" id="intro-btn">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= 5. THE PLANS ================= -->
+<div id="sheet" hidden>
+  <div class="sheet">
+
+    <p class="welcome">
+      <span>Glad you made it, <b id="greet-name">friend</b>.</span>
+      <button type="button" id="reset-btn">Not you?</button>
+    </p>
 
     <section class="ask">
       <h2 class="story">Two things, and that&rsquo;s the whole birthday wish</h2>
@@ -970,6 +999,8 @@
   var partyName = document.getElementById("party-name");
   var enterBtn  = document.getElementById("enter-btn");
   var contBtn   = document.getElementById("continue-btn");
+  var introBtn  = document.getElementById("intro-btn");
+  var intro     = document.getElementById("intro");
   var resetBtn  = document.getElementById("reset-btn");
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1182,10 +1213,24 @@
     greet.textContent = name;
     sheet.hidden = false;
     window.scrollTo(0, 0);
+  }
+
+  function openIntro(name) {
+    var leaving = false;
+    intro.hidden = false;
+    intro.scrollTop = 0;
     if (!reduced && !ambient) {
       ambient = Fireworks(document.getElementById("mastfw"), { rate: 2400, burst: 44, trail: 0.22 });
       ambient.start(1);
     }
+    introBtn.addEventListener("click", function () {
+      if (leaving) return;
+      leaving = true;
+      swipeUp(intro, function () {
+        if (ambient) { ambient.stop(); ambient = null; }
+        openSheet(name);
+      });
+    });
   }
 
   function openRabbit(name) {
@@ -1195,7 +1240,7 @@
     contBtn.addEventListener("click", function () {
       if (leaving) return;
       leaving = true;
-      swipeUp(rabbit, function () { openSheet(name); });
+      swipeUp(rabbit, function () { openIntro(name); });
     });
   }
 
@@ -1242,6 +1287,7 @@
     if (ambient) { ambient.stop(); ambient = null; }
     handedOff = false;
     sheet.hidden = true;
+    intro.hidden = true;
     rabbit.hidden = true;
     party.hidden = true;
     gate.hidden = false;
@@ -1256,7 +1302,7 @@
   var known = saved ? findGuest(saved) : null;
   if (known) {
     gate.hidden = true;
-    if (get(SEEN_KEY)) { openSheet(known); } else { celebrate(known); }
+    if (get(SEEN_KEY)) { openIntro(known); } else { celebrate(known); }
   }
 })();
 </script>
