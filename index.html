@@ -364,16 +364,149 @@
 
   #intro { z-index: 25; }
 
-  .intro-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 26px 18px 72px;
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
+  .intro-photo {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    filter: saturate(.8) brightness(.78);
+    pointer-events: none;
+    user-select: none;
   }
 
-  #intro .center { margin-top: 6px; }
+  #intro::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(36, 43, 112, .38) 0%,
+      rgba(28, 34, 92, .62) 26%,
+      rgba(25, 30, 82, .88) 52%,
+      rgba(25, 30, 82, .95) 100%
+    );
+  }
+
+  #mastfw {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 2;
+    width: 100%;
+    height: 54%;
+    opacity: .85;
+    pointer-events: none;
+  }
+
+  .intro-inner {
+    position: relative;
+    z-index: 3;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: clamp(84px, 22vh, 210px) 22px 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .intro-inner .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+  }
+
+  .intro-inner h1 {
+    margin: 0;
+    font-size: clamp(40px, 11vw, 76px);
+    color: var(--gold);
+    text-shadow: 0 3px 20px rgba(9, 11, 40, .95), 0 0 46px rgba(245, 200, 106, .5);
+    text-wrap: balance;
+  }
+
+  .intro-inner .dates {
+    margin: 0;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--cream);
+    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+  }
+
+  .intro-inner .tally {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
+    margin: 4px 0 6px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .intro-inner .tally li {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-deep);
+    border-radius: 999px;
+    padding: 6px 14px;
+    background: rgba(9, 11, 40, .42);
+  }
+
+  .intro-prose {
+    width: 100%;
+    max-width: 56ch;
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .intro-prose p {
+    margin: 0 0 18px;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(9, 11, 40, .8);
+  }
+
+  .intro-prose > p:last-of-type { margin-bottom: 0; }
+
+  .one-ask {
+    margin-top: 26px;
+    border-left: 3px solid var(--gold);
+    background: rgba(9, 11, 40, .55);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px 22px;
+  }
+
+  .one-ask strong {
+    display: block;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .one-ask p {
+    margin: 0 !important;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--cream);
+    text-shadow: none;
+  }
+
+  #intro .btn { margin-top: 34px; }
+
 
   /* ================= 5. THE PLANS ================= */
 
@@ -413,106 +546,6 @@
   }
 
   .welcome button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-
-  /* masthead: castle photograph fading into the night */
-  .masthead {
-    position: relative;
-    isolation: isolate;
-    border: 1px solid var(--edge);
-    border-radius: 14px;
-    overflow: hidden;
-    background: var(--card);
-    min-height: clamp(430px, 74vh, 620px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: center;
-  }
-
-  .masthead-photo {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 26%;
-    filter: saturate(.82) brightness(.92);
-  }
-
-  .masthead::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      180deg,
-      rgba(36, 43, 112, .30) 0%,
-      rgba(30, 36, 96, .34) 32%,
-      rgba(25, 30, 82, .80) 62%,
-      rgba(25, 30, 82, .97) 84%,
-      var(--card) 100%
-    );
-  }
-
-  #mastfw {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: 2;
-    width: 100%;
-    height: 58%;
-    opacity: .8;
-  }
-
-  .masthead-copy {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 0 24px 32px;
-  }
-
-  .masthead .eyebrow {
-    margin: 0;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--teal);
-  }
-
-  .masthead h1 {
-    margin: 0;
-    font-size: clamp(38px, 10.5vw, 74px);
-    color: var(--gold);
-    text-shadow: 0 2px 34px rgba(240, 195, 92, .4);
-    text-wrap: balance;
-  }
-
-  .masthead .dates { margin: 0; font-size: 15.5px; font-weight: 600; color: var(--cream); }
-
-  .masthead .tally {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 10px;
-    margin: 4px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .masthead .tally li {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold-deep);
-    border-radius: 999px;
-    padding: 6px 14px;
-  }
 
   /* the two asks */
   .ask {
@@ -560,58 +593,6 @@
 
   .ask li .head { font-size: 19px; font-weight: 800; line-height: 1.35; color: var(--cream); }
   .ask li .detail { font-size: 15.5px; line-height: 1.6; color: var(--muted); }
-
-  /* the notice */
-  .notice {
-    background: rgba(88, 220, 201, .07);
-    border: 1px solid rgba(88, 220, 201, .38);
-    border-radius: 14px;
-    padding: 30px 28px 32px;
-  }
-
-  .notice .eyebrow {
-    margin: 0 0 12px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--teal);
-  }
-
-  .notice h2 {
-    margin: 0 0 20px;
-    font-size: clamp(24px, 5.8vw, 34px);
-    color: var(--teal);
-    text-wrap: balance;
-  }
-
-  .notice p {
-    margin: 0 0 16px;
-    font-size: 16px;
-    line-height: 1.72;
-    max-width: 60ch;
-  }
-
-  .notice p:last-child { margin-bottom: 0; }
-
-  .notice .one-ask {
-    margin-top: 24px;
-    border-left: 3px solid var(--gold);
-    background: rgba(245, 200, 106, .09);
-    border-radius: 0 10px 10px 0;
-    padding: 18px 22px 20px;
-  }
-
-  .notice .one-ask strong {
-    display: block;
-    font-family: "Berkshire Swash", Georgia, serif;
-    font-weight: 400;
-    font-size: 21px;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .notice .one-ask p { margin: 0; font-size: 15.5px; color: var(--cream); }
 
   .section-title {
     margin: 10px 0 -12px;
@@ -805,24 +786,23 @@
 
   @media print {
     html, body { background: #fff !important; color: #000; }
-    #gate, #party, #rabbit, #stars, .welcome, #mastfw, .masthead-photo, .gate-photo,
-    #intro .center { display: none !important; }
+    #gate, #party, #rabbit, #stars, .welcome, #mastfw, .intro-photo, .gate-photo,
+    .party-photo, #intro .btn { display: none !important; }
     #intro { position: static !important; overflow: visible !important; }
-    .intro-inner { max-width: none; padding: 0 0 16px; gap: 16px; }
-    .masthead { min-height: 0 !important; }
-    .masthead::after { display: none !important; }
-    .masthead-copy { padding: 26px 24px !important; }
+    #intro::after { display: none !important; }
+    .intro-inner { max-width: none; padding: 0 0 20px; gap: 12px; }
+    .intro-prose { max-width: none; margin-top: 4px; }
     #sheet { display: block !important; }
     .sheet { max-width: none; padding: 0; gap: 16px; }
-    .masthead, .ask, .notice, .day, .heads { break-inside: avoid; }
-    .masthead, .ask, .notice, .day, .heads, .day-head, .notice .one-ask {
+    .ask, .day, .heads, .one-ask { break-inside: avoid; }
+    .ask, .day, .heads, .day-head, .one-ask, .intro-inner .tally li {
       background: #fff !important; border-color: #000 !important;
     }
-    .masthead h1, .ask h2, .section-title, .heads h2, .signoff, .day-num,
-    .ask li::before, .notice h2, .notice .one-ask strong, .gate-title { color: #000 !important; text-shadow: none !important; }
-    .masthead .eyebrow, .masthead .dates, .notice p, .notice .eyebrow, .day-body p, .heads li,
+    .intro-inner h1, .ask h2, .section-title, .heads h2, .signoff, .day-num,
+    .ask li::before, .one-ask strong, .gate-title { color: #000 !important; text-shadow: none !important; }
+    .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
     .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
-    .masthead .tally li, .day-who, .four-list li, .blank {
+    .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
     }
   }
@@ -872,26 +852,22 @@
 
 <!-- ================= 4. THE TRIP + THE NOTICE ================= -->
 <div class="step" id="intro" hidden>
+  <img class="intro-photo" src="castle.jpg" alt="" aria-hidden="true">
+  <canvas id="mastfw" aria-hidden="true"></canvas>
   <div class="intro-inner">
 
-    <header class="masthead">
-      <img class="masthead-photo" src="castle.jpg" alt="" aria-hidden="true">
-      <canvas id="mastfw" aria-hidden="true"></canvas>
-      <div class="masthead-copy">
-        <p class="eyebrow">You&rsquo;re invited</p>
-        <h1 class="story">The Disney Trip</h1>
-        <p class="dates">Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
-        <ul class="tally">
-          <li>16 of us</li>
-          <li>2 days together</li>
-          <li>Park Hoppers all around</li>
-        </ul>
-      </div>
-    </header>
+    <p class="eyebrow">You&rsquo;re invited</p>
+    <h1 class="story">The Disney Trip</h1>
+    <p class="dates">Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
+    <ul class="tally">
+      <li>16 of us</li>
+      <li>2 days together</li>
+      <li>Park Hoppers all around</li>
+    </ul>
 
-    <section class="notice">
-      <p class="eyebrow">Read this before anything else</p>
-      <h2 class="story">From here on out, your trip is yours</h2>
+    <div class="flourish"><i></i></div>
+
+    <div class="intro-prose">
       <p>Everything past this page is a suggestion, not a schedule. There are a couple of birthday wishes and a few things already on the books, but nobody is obligated to a single one of them.</p>
       <p>These two days are for fun and magic. If the group is off doing something you have no interest in, go do the thing you actually want to do instead. Sleep in. Split off. Ride the same ride four times in a row. Take the babies back to the hotel in the afternoon. Nobody is counting heads and nobody is going to be offended.</p>
       <p>We do not all have to stay together to have a good trip. Plan around what you love, not around what everybody else happened to pick.</p>
@@ -899,11 +875,9 @@
         <strong>The one thing I do ask</strong>
         <p>If you are not joining the lunch reservation, tell me ahead of time, not that morning. The seats are booked and held under our name, and empty chairs still get charged.</p>
       </div>
-    </section>
-
-    <div class="center">
-      <button type="button" class="btn" id="intro-btn">Continue</button>
     </div>
+
+    <button type="button" class="btn" id="intro-btn">Continue</button>
 
   </div>
 </div>
