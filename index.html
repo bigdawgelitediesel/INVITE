@@ -664,9 +664,22 @@
   .rooms dd {
     margin: 0;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.45;
     color: var(--cream);
   }
+
+  .rooms dd b { font-weight: 800; }
+
+  .rooms dd .bed {
+    display: block;
+    margin-top: 3px;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .rooms dt.offsite { color: var(--muted); }
+  .rooms dt.offsite, .rooms dd.offsite { border-top-style: dashed; }
 
   .checkin-note {
     margin: 6px 0 0;
@@ -1083,10 +1096,26 @@
     <div class="rooms">
       <p class="label">Room assignments</p>
       <dl>
-        <dt>Room 1</dt><dd><span class="blank">&nbsp;</span></dd>
-        <dt>Room 2</dt><dd><span class="blank">&nbsp;</span></dd>
-        <dt>Room 3</dt><dd><span class="blank">&nbsp;</span></dd>
-        <dt>Room 4</dt><dd><span class="blank">&nbsp;</span></dd>
+        <dt>Bedroom 1</dt>
+        <dd><b>Jacob &amp; Abigail</b><span class="bed">Cal-King master with ensuite</span></dd>
+
+        <dt>Bedroom 2</dt>
+        <dd><b>Leah &amp; Bri</b><span class="bed">Cal-King master, Jack n&rsquo; Jill bathroom</span></dd>
+
+        <dt>Bedroom 3</dt>
+        <dd><b>Logan, Madi, August &amp; Callahan</b><span class="bed">Cal-King, Jack n&rsquo; Jill bathroom</span></dd>
+
+        <dt>Bedroom 4</dt>
+        <dd><b>Kirk &amp; Kaisa</b><span class="bed">Cal-King master with ensuite</span></dd>
+
+        <dt>Bedroom 5</dt>
+        <dd><b>Payton &amp; Bella</b><span class="bed">Full bunk beds</span></dd>
+
+        <dt>Bedroom 6</dt>
+        <dd><b>Marie &amp; Nora</b><span class="bed">Full bunk beds</span></dd>
+
+        <dt class="offsite">Off site</dt>
+        <dd class="offsite"><b>Steve &amp; Anne</b><span class="bed">Staying at their own hotel</span></dd>
       </dl>
     </div>
 
@@ -1203,7 +1232,19 @@
   --------------------------------------------------------------- */
   var ROSTER = [
     "Jacob",
-    "Mama Weber"
+    "Abigail",
+    "Leah",
+    "Bri",
+    "Logan",
+    "Madi",
+    "Kirk",
+    "Kaisa",
+    "Payton",
+    "Bella",
+    "Marie",
+    "Nora",
+    "Steve",
+    "Anne"
   ];
 
   var STORE_KEY = "familyMashupGuest";
