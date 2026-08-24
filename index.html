@@ -117,15 +117,43 @@
 
   #gate {
     position: relative;
+    isolation: isolate;
     z-index: 20;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 32px 20px 48px;
+    overflow: hidden;
+  }
+
+  .gate-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    filter: saturate(.88) brightness(.86);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #gate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(78% 52% at 50% 50%, rgba(20, 24, 68, .88) 0%, rgba(20, 24, 68, .42) 62%, rgba(20, 24, 68, 0) 100%),
+      linear-gradient(180deg, rgba(25, 30, 82, .62) 0%, rgba(25, 30, 82, .50) 38%, rgba(25, 30, 82, .78) 78%, rgba(25, 30, 82, .95) 100%);
   }
 
   .gate-inner {
+    position: relative;
+    z-index: 2;
     width: 100%;
     max-width: 380px;
     display: flex;
@@ -139,7 +167,7 @@
     text-align: center;
     font-size: clamp(42px, 13vw, 68px);
     color: var(--gold);
-    text-shadow: 0 2px 30px rgba(240, 195, 92, .45);
+    text-shadow: 0 2px 18px rgba(9, 11, 40, .95), 0 0 44px rgba(245, 200, 106, .5);
   }
 
   .gate-sub {
@@ -150,6 +178,7 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--teal);
+    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
   }
 
   .gate-form { width: 100%; margin-top: 10px; }
@@ -161,8 +190,9 @@
     font-weight: 700;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--cream);
     margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
   }
 
   .gate-form input {
@@ -172,10 +202,11 @@
     font-weight: 600;
     text-align: center;
     color: var(--cream);
-    background: rgba(9, 11, 40, .85);
+    background: #131845;
     border: 2px solid var(--edge);
     border-radius: 10px;
     padding: 15px 14px;
+    box-shadow: 0 10px 30px rgba(9, 11, 40, .55);
   }
 
   .gate-form input::placeholder { color: #7B76A8; font-weight: 400; }
@@ -186,7 +217,7 @@
     box-shadow: 0 0 0 4px rgba(240, 195, 92, .16);
   }
 
-  .gate-form .btn { margin-top: 16px; width: 100%; }
+  .gate-form .btn { margin-top: 16px; width: 100%; box-shadow: 0 10px 30px rgba(9, 11, 40, .5), inset 0 1px 0 rgba(255, 255, 255, .55); }
 
   .gate-msg {
     min-height: 24px;
@@ -751,6 +782,7 @@
 
 <!-- ================= 1. GATE ================= -->
 <div id="gate">
+  <img class="gate-photo" src="gate.jpg" alt="" aria-hidden="true">
   <div class="gate-inner">
     <h1 class="gate-title story">You Are Invited</h1>
     <p class="gate-sub">Anaheim &middot; 09.20.2026</p>
