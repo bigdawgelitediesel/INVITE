@@ -1,4 +1,4 @@
-# Jacob's Dirty 30
+# The Disney Trip
 
 Birthday invitation site for Jacob's 30th at Disneyland Resort. The group days are September 19 and 20, 2026.
 
