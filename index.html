@@ -686,6 +686,15 @@
   .rooms dt.offsite { color: var(--muted); }
   .rooms dt.offsite, .rooms dd.offsite { border-top-style: dashed; }
 
+  .rooms-note {
+    margin: 20px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--edge);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
   .checkin-note {
     margin: 6px 0 0;
     font-size: 15px;
@@ -1422,7 +1431,7 @@
     .stay-card .when-time, .stay-card .when-day, .bfast-lead { color: #000 !important; text-shadow: none !important; }
     .maplink { border-color: #000 !important; }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
-    .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label, .bfast-note,
+    .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label, .bfast-note, .rooms-note,
     .ask .why, .ask li .head, .ask li .detail, .ask li .detail b, .section-note, .note-label { color: #000 !important; }
     .intro-inner .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
@@ -1437,7 +1446,7 @@
     .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
     .hours, .ask, .heads, .contact, .appcard { break-inside: avoid; }
     .hours, .day-tag, .contact, .appcard { background: #fff !important; border-color: #000 !important; }
-    .hours-list li { border-color: #000 !important; }
+    .hours-list li, .rooms-note { border-color: #000 !important; }
     .day-big, .hours-big, .contact-num, .app-lead { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
     .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi,
@@ -1576,6 +1585,8 @@
         <dt class="offsite">Off site</dt>
         <dd class="offsite"><b>Steve &amp; Anne</b><span class="bed">Staying at their own hotel</span></dd>
       </dl>
+
+      <p class="rooms-note">These bedroom numbers line up with the bedroom numbers on the Airbnb photos. If you want to see your room before we get there, pull up the listing and find the picture with your number on it.</p>
     </div>
 
     <p class="checkin-note">Booked your own place instead? Nothing here applies to you. Keep going.</p>
