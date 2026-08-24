@@ -820,6 +820,96 @@
     color: var(--cyan);
     text-shadow: none;
   }
+  /* ---- swipe-up out of the fireworks ---- */
+  #party {
+    will-change: transform;
+    transition: transform .82s cubic-bezier(.66, 0, .2, 1);
+  }
+
+  #party.lift { transform: translateY(-100%); }
+
+  /* ---- rabbit hole welcome segment ---- */
+  .rabbit {
+    position: relative;
+    border: 3px solid var(--violet);
+    border-radius: 10px;
+    padding: 34px 28px 30px;
+    background:
+      linear-gradient(180deg, rgba(138, 69, 232, .22) 0%, rgba(18, 16, 28, 0) 62%),
+      var(--panel);
+    overflow: hidden;
+    animation: rabbitIn .9s .12s cubic-bezier(.2, .9, .3, 1) both;
+  }
+
+  .rabbit-eyebrow {
+    margin: 0 0 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--violet);
+  }
+
+  .rabbit-head {
+    margin: 0 0 18px;
+    font-size: clamp(25px, 6.4vw, 40px);
+    color: var(--cyan);
+    text-shadow: 0 0 6px rgba(41, 205, 247, .7), 0 0 34px rgba(41, 205, 247, .35);
+    text-wrap: balance;
+  }
+
+  .rabbit p {
+    margin: 0 0 15px;
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 58ch;
+    color: var(--text);
+  }
+
+  .rabbit-sign {
+    margin: 20px 0 0 !important;
+    font-family: "Bungee", Impact, sans-serif;
+    font-size: 20px;
+    color: var(--yellow);
+    text-shadow: 0 0 20px rgba(255, 224, 27, .45);
+  }
+
+  .rabbit-cue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 26px 0 0 !important;
+    font-size: 11px !important;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-soft) !important;
+  }
+
+  .rabbit-cue span { animation: bob 1.9s ease-in-out infinite; }
+
+  @keyframes rabbitIn {
+    from { opacity: 0; transform: translateY(38px) scale(.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(5px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #party { transition: none !important; }
+    .rabbit { animation: none !important; }
+    .rabbit-cue span { animation: none !important; }
+  }
+
+  @media print {
+    .rabbit { background: #fff !important; border-color: #000 !important; break-inside: avoid; }
+    .rabbit-eyebrow, .rabbit-head, .rabbit p, .rabbit-sign { color: #000 !important; text-shadow: none !important; }
+    .rabbit-cue { display: none !important; }
+  }
 </style>
 
 <!-- ================= GATE ================= -->
@@ -850,6 +940,15 @@
 <!-- ================= SHEET ================= -->
 <div id="sheet" hidden>
   <div class="sheet">
+
+    <section class="rabbit" id="rabbit">
+      <p class="rabbit-eyebrow">Down the rabbit hole</p>
+      <h2 class="rabbit-head neon">Thanks for falling in with me</h2>
+      <p>Turning thirty could have been a dinner and a cake. Instead sixteen of us are getting on planes to go chase a five year old&rsquo;s idea of a good time, and I could not have picked better people to do it with.</p>
+      <p>Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
+      <p class="rabbit-sign">Jacob</p>
+      <p class="rabbit-cue">Keep going <span>&#9660;</span></p>
+    </section>
 
     <p class="welcome">
       <span>Glad you made it, <b id="greet-name">friend</b>.</span>
@@ -1150,6 +1249,17 @@
   /* ---------------- flow ---------------- */
 
   function showSheet(name) {
+    if (reduced || party.hidden) { showSheetNow(name); return; }
+    sheet.hidden = false;
+    window.scrollTo(0, 0);
+    party.classList.add("lift");
+    setTimeout(function () {
+      party.classList.remove("lift");
+      showSheetNow(name);
+    }, 820);
+  }
+
+  function showSheetNow(name) {
     greet.textContent = name;
     gate.hidden = true;
     party.hidden = true;
