@@ -1,33 +1,36 @@
 <title>Family Mashup 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Archivo:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Nunito:wght@400;600;700;800&display=swap">
 
 <style>
   :root {
-    --void:      #07060B;
-    --panel:     #12101C;
-    --panel-hi:  #1A1728;
-    --edge:      #2B2740;
-    --magenta:   #FF2E9F;
-    --cyan:      #29CDF7;
-    --yellow:    #FFE01B;
-    --lime:      #A6EC3D;
-    --violet:    #8A45E8;
-    --text:      #F3F0F8;
-    --text-soft: #A79EBD;
+    --night:      #101440;
+    --deep:       #090B28;
+    --card:       #191E52;
+    --card-hi:    #222873;
+    --edge:       #333B85;
+    --gold:       #F0C35C;
+    --gold-deep:  #C1913A;
+    --teal:       #4FD6C4;
+    --rose:       #FF93AC;
+    --cream:      #F8F2E5;
+    --muted:      #ADA8CE;
   }
 
   * { box-sizing: border-box; }
 
-  html { background: var(--void); }
+  html { background: var(--deep); }
 
   body {
-    background: var(--void);
-    color: var(--text);
-    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    background:
+      radial-gradient(140% 90% at 50% -10%, #26246B 0%, rgba(16, 20, 64, 0) 58%),
+      linear-gradient(180deg, var(--night) 0%, var(--deep) 100%);
+    background-attachment: fixed;
+    color: var(--cream);
+    font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
@@ -35,140 +38,175 @@
 
   [hidden] { display: none !important; }
 
-  .neon {
-    font-family: "Bungee", "Archivo Black", Impact, sans-serif;
+  .story {
+    font-family: "Berkshire Swash", Georgia, serif;
     font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.02;
+    line-height: 1.1;
   }
 
-  /* shared full-screen step panels */
+  /* drifting starfield behind everything */
+  #stars {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* full-screen chapters */
   .step {
     position: fixed;
     inset: 0;
-    z-index: 80;
-    background: var(--void);
+    z-index: 20;
     overflow-y: auto;
     overflow-x: hidden;
     will-change: transform;
-    transition: transform .82s cubic-bezier(.66, 0, .2, 1);
+    transition: transform .9s cubic-bezier(.62, 0, .18, 1);
   }
 
   .step.lift { transform: translateY(-100%); }
 
-  .cta {
-    font-family: "Bungee", Impact, sans-serif;
-    font-size: 17px;
-    color: #1A0A14;
-    border: 3px solid var(--void);
-    border-radius: 999px;
-    padding: 14px 34px;
-    cursor: pointer;
-    transition: filter .12s ease, transform .12s ease;
+  /* ornamental gold rule with a diamond in the middle */
+  .flourish {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 260px;
+    color: var(--gold-deep);
   }
 
-  .cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
-  .cta:active { transform: translateY(1px); }
-  .cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  .flourish::before,
+  .flourish::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+  }
+
+  .flourish i {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex: none;
+  }
+
+  .btn {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #221A05;
+    background: linear-gradient(180deg, #F7D480 0%, var(--gold) 45%, #D9A945 100%);
+    border: none;
+    border-radius: 999px;
+    padding: 15px 38px;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(240, 195, 92, .28), inset 0 1px 0 rgba(255, 255, 255, .55);
+    transition: transform .16s ease, box-shadow .16s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(240, 195, 92, .4), inset 0 1px 0 rgba(255,255,255,.55); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
 
   /* ================= 1. GATE ================= */
 
   #gate {
+    position: relative;
+    z-index: 20;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 28px 18px 44px;
-    background: var(--void);
+    padding: 32px 20px 48px;
   }
 
   .gate-inner {
     width: 100%;
-    max-width: 360px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
   }
 
   .gate-title {
     margin: 0;
     text-align: center;
-    font-size: clamp(34px, 11vw, 56px);
-    line-height: .98;
-    color: var(--magenta);
-    text-shadow: 0 0 6px rgba(255, 46, 159, .95), 0 0 34px rgba(255, 46, 159, .55);
+    font-size: clamp(42px, 13vw, 68px);
+    color: var(--gold);
+    text-shadow: 0 2px 30px rgba(240, 195, 92, .45);
   }
 
   .gate-sub {
-    margin: -6px 0 10px;
+    margin: 2px 0 6px;
     text-align: center;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--cyan);
+    color: var(--teal);
   }
 
-  .gate-form { width: 100%; }
+  .gate-form { width: 100%; margin-top: 10px; }
 
   .gate-form label {
     display: block;
     text-align: center;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 10px;
+    color: var(--muted);
+    margin-bottom: 12px;
   }
 
   .gate-form input {
     width: 100%;
-    font-family: "Archivo", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-size: 18px;
     font-weight: 600;
     text-align: center;
-    color: #16111F;
-    background: #FFFFFF;
-    border: 3px solid var(--cyan);
-    border-radius: 6px;
-    padding: 14px;
+    color: var(--cream);
+    background: rgba(9, 11, 40, .85);
+    border: 2px solid var(--edge);
+    border-radius: 10px;
+    padding: 15px 14px;
   }
 
-  .gate-form input::placeholder { color: #8E8899; font-weight: 400; }
-  .gate-form input:focus-visible { outline: none; border-color: var(--yellow); }
+  .gate-form input::placeholder { color: #7B76A8; font-weight: 400; }
 
-  .gate-form button {
-    margin-top: 14px;
-    width: 100%;
-    font-family: "Bungee", Impact, sans-serif;
-    font-size: 19px;
-    color: #1A0A14;
-    background: var(--magenta);
-    border: 3px solid var(--yellow);
-    border-radius: 6px;
-    padding: 15px 16px;
-    cursor: pointer;
-    transition: filter .12s ease, transform .12s ease;
+  .gate-form input:focus-visible {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(240, 195, 92, .16);
   }
 
-  .gate-form button:hover { filter: brightness(1.1); transform: translateY(-1px); }
-  .gate-form button:active { transform: translateY(1px); }
-  .gate-form button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+  .gate-form .btn { margin-top: 16px; width: 100%; }
 
   .gate-msg {
     min-height: 24px;
-    margin: 12px 0 0;
+    margin: 14px 0 0;
     font-size: 14.5px;
     font-weight: 600;
     text-align: center;
-    color: var(--yellow);
+    color: var(--rose);
   }
 
   /* ================= 2. FIREWORKS ================= */
 
-  #party { z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; overflow: hidden; }
+  #party {
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(16,20,64,.35) 0%, rgba(9,11,40,.85) 100%), var(--deep);
+  }
 
   #fw { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
@@ -179,96 +217,92 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
   }
 
   .party-copy h1 {
     margin: 0;
-    font-size: clamp(46px, 15vw, 130px);
-    color: var(--yellow);
-    text-shadow:
-      0 0 6px rgba(255, 224, 27, .9),
-      0 0 26px rgba(255, 46, 159, .75),
-      0 0 60px rgba(41, 205, 247, .5);
-    animation: pop .7s cubic-bezier(.2, 1.5, .4, 1) both;
+    font-size: clamp(48px, 15vw, 132px);
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(240, 195, 92, .65), 0 4px 60px rgba(79, 214, 196, .35);
+    animation: swell .9s cubic-bezier(.2, 1.3, .4, 1) both;
   }
 
   .party-copy .who {
     margin: 0;
-    font-size: clamp(17px, 4.5vw, 26px);
+    font-size: clamp(15px, 4vw, 21px);
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--cyan);
-    animation: rise .6s .5s both;
+    color: var(--teal);
+    animation: drift .7s .55s both;
   }
 
-  .party-copy .cta { background: var(--lime); animation: rise .6s 1.1s both; }
+  .party-copy .btn { animation: drift .7s 1.15s both; }
 
   /* ================= 3. RABBIT HOLE ================= */
 
   #rabbit {
-    z-index: 85;
+    z-index: 30;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 22px 48px;
-    background:
-      radial-gradient(120% 70% at 50% 0%, rgba(138, 69, 232, .28) 0%, rgba(7, 6, 11, 0) 62%),
-      var(--void);
+    padding: 46px 22px 54px;
+    background: radial-gradient(110% 62% at 50% 0%, rgba(79, 214, 196, .16) 0%, rgba(9, 11, 40, 0) 60%), var(--deep);
   }
 
   .rabbit-inner {
     width: 100%;
-    max-width: 620px;
+    max-width: 640px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    animation: rise .85s .1s cubic-bezier(.2, .9, .3, 1) both;
+    align-items: center;
+    text-align: center;
+    gap: 22px;
+    animation: tumble 1.1s .1s cubic-bezier(.18, .9, .3, 1) both;
+  }
+
+  .rabbit-eyebrow {
+    margin: 0;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(17px, 4.4vw, 23px);
+    color: var(--teal);
   }
 
   .rabbit-head {
     margin: 0;
-    font-size: clamp(28px, 7.4vw, 52px);
-    line-height: 1.08;
-    color: var(--cyan);
-    text-shadow: 0 0 7px rgba(41, 205, 247, .7), 0 0 38px rgba(41, 205, 247, .35);
+    font-size: clamp(30px, 7.8vw, 56px);
+    color: var(--gold);
+    text-shadow: 0 2px 34px rgba(240, 195, 92, .38);
     text-wrap: balance;
   }
 
-  .rabbit-inner p {
+  .rabbit-inner p.body {
     margin: 0;
     font-size: 17.5px;
-    line-height: 1.72;
-    max-width: 56ch;
-    color: var(--text);
+    line-height: 1.78;
+    max-width: 54ch;
+    color: var(--cream);
   }
 
   .rabbit-sign {
-    font-family: "Bungee", Impact, sans-serif;
-    font-size: 22px;
-    color: var(--yellow) !important;
-    text-shadow: 0 0 20px rgba(255, 224, 27, .45);
-  }
-
-  #rabbit .cta {
-    align-self: center;
-    margin-top: 14px;
-    background: var(--magenta);
-    color: #FFFFFF;
-    border-color: var(--yellow);
+    margin: 0;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: 30px;
+    color: var(--rose);
   }
 
   /* ================= 4. THE INVITE ================= */
 
+  #sheet { position: relative; z-index: 20; }
+
   .sheet {
-    max-width: 730px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 26px 18px 80px;
+    padding: 26px 18px 90px;
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 28px;
   }
 
   .welcome {
@@ -277,16 +311,17 @@
     align-items: baseline;
     gap: 6px 14px;
     font-size: 14px;
-    color: var(--text-soft);
+    color: var(--muted);
     margin: 0;
   }
 
-  .welcome b { color: var(--lime); font-weight: 700; }
+  .welcome b { color: var(--teal); font-weight: 700; }
 
   .welcome button {
     font-family: inherit;
     font-size: 13px;
-    color: var(--cyan);
+    font-weight: 600;
+    color: var(--gold);
     background: none;
     border: none;
     border-bottom: 1px solid currentColor;
@@ -294,78 +329,92 @@
     cursor: pointer;
   }
 
-  .welcome button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .welcome button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
+  /* masthead with the castle */
   .masthead {
     position: relative;
-    border: 3px solid var(--magenta);
-    border-radius: 8px;
-    background: var(--panel);
-    padding: 34px 26px 30px;
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    background: linear-gradient(180deg, var(--card-hi) 0%, var(--card) 100%);
+    padding: 36px 26px 0;
     overflow: hidden;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
   }
 
-  #mastfw { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; }
+  #mastfw { position: absolute; inset: 0 0 auto; width: 100%; height: 62%; opacity: .65; }
 
   .masthead > *:not(#mastfw) { position: relative; z-index: 2; }
 
   .masthead .eyebrow {
-    margin: 0 0 12px;
-    font-size: 11.5px;
+    margin: 0;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--cyan);
+    color: var(--teal);
   }
 
   .masthead h1 {
     margin: 0;
-    font-size: clamp(34px, 9.5vw, 68px);
-    color: var(--magenta);
-    text-shadow: 0 0 5px rgba(255, 46, 159, .85), 0 0 30px rgba(255, 46, 159, .45);
+    font-size: clamp(38px, 10.5vw, 74px);
+    color: var(--gold);
+    text-shadow: 0 2px 34px rgba(240, 195, 92, .4);
     text-wrap: balance;
   }
 
-  .masthead .dates { margin: 14px 0 0; font-size: 15.5px; font-weight: 600; color: var(--text); }
+  .masthead .dates { margin: 0; font-size: 15.5px; font-weight: 600; color: var(--cream); }
 
   .masthead .tally {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px 10px;
-    margin: 20px 0 0;
+    margin: 4px 0 0;
     padding: 0;
     list-style: none;
   }
 
   .masthead .tally li {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--yellow);
-    border: 2px solid var(--yellow);
+    color: var(--gold);
+    border: 1px solid var(--gold-deep);
     border-radius: 999px;
-    padding: 5px 13px;
+    padding: 6px 14px;
   }
 
+  .castle {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin-top: 10px;
+    color: var(--deep);
+  }
+
+  /* the two asks */
   .ask {
-    background: var(--panel);
-    border: 3px solid var(--yellow);
-    border-radius: 8px;
-    padding: 28px 26px 30px;
+    background: linear-gradient(180deg, var(--card) 0%, var(--deep) 130%);
+    border: 1px solid var(--gold-deep);
+    border-radius: 14px;
+    padding: 30px 26px 32px;
   }
 
   .ask h2 {
     margin: 0 0 10px;
-    font-size: clamp(23px, 5.4vw, 32px);
-    color: var(--yellow);
-    text-shadow: 0 0 18px rgba(255, 224, 27, .35);
+    font-size: clamp(25px, 6vw, 36px);
+    color: var(--gold);
     text-wrap: balance;
   }
 
-  .ask .why { margin: 0 0 26px; font-size: 15px; color: var(--text-soft); max-width: 54ch; }
+  .ask .why { margin: 0 0 28px; font-size: 15.5px; color: var(--muted); max-width: 54ch; }
 
   .ask ol {
     margin: 0;
@@ -373,7 +422,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 26px;
     counter-reset: wish;
   }
 
@@ -381,96 +430,107 @@
     counter-increment: wish;
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: 6px 16px;
+    gap: 6px 18px;
     align-items: baseline;
   }
 
   .ask li::before {
     content: counter(wish);
     grid-row: span 2;
-    font-family: "Bungee", Impact, sans-serif;
+    font-family: "Berkshire Swash", Georgia, serif;
     font-size: 46px;
-    line-height: .8;
-    color: var(--magenta);
-    text-shadow: 0 0 16px rgba(255, 46, 159, .55);
+    line-height: .82;
+    color: var(--rose);
   }
 
-  .ask li .head { font-size: 18.5px; font-weight: 700; line-height: 1.3; color: var(--text); }
-  .ask li .detail { font-size: 15px; line-height: 1.55; color: var(--text-soft); }
+  .ask li .head { font-size: 19px; font-weight: 800; line-height: 1.35; color: var(--cream); }
+  .ask li .detail { font-size: 15.5px; line-height: 1.6; color: var(--muted); }
 
+  /* permission slip */
   .freedom {
-    background: var(--panel-hi);
-    border-left: 6px solid var(--lime);
-    border-radius: 0 8px 8px 0;
-    padding: 24px 26px;
+    background: rgba(79, 214, 196, .07);
+    border: 1px solid rgba(79, 214, 196, .35);
+    border-radius: 14px;
+    padding: 26px 26px 28px;
   }
 
   .freedom h3 {
-    margin: 0 0 12px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--lime);
+    margin: 0 0 14px;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: 24px;
+    color: var(--teal);
   }
 
-  .freedom p { margin: 0 0 13px; font-size: 15.5px; max-width: 60ch; }
+  .freedom p { margin: 0 0 14px; font-size: 15.5px; max-width: 60ch; }
   .freedom p:last-child { margin-bottom: 0; }
 
   .section-title {
-    margin: 8px 0 -10px;
-    font-size: clamp(22px, 5vw, 28px);
-    color: var(--cyan);
-    text-shadow: 0 0 18px rgba(41, 205, 247, .35);
+    margin: 10px 0 -12px;
+    font-size: clamp(25px, 6vw, 34px);
+    color: var(--gold);
+    text-align: center;
   }
 
-  .section-note { margin: 0 0 -8px; font-size: 14.5px; color: var(--text-soft); max-width: 60ch; }
+  .section-note {
+    margin: 0 0 -10px;
+    font-size: 14.5px;
+    color: var(--muted);
+    text-align: center;
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-  .day { background: var(--panel); border: 2px solid var(--edge); border-radius: 8px; overflow: hidden; }
+  /* day pages */
+  .day {
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    overflow: hidden;
+  }
 
   .day-head {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px 14px;
-    padding: 16px 22px 14px;
-    border-bottom: 2px solid var(--edge);
-    background: var(--panel-hi);
+    padding: 18px 24px 16px;
+    border-bottom: 1px solid var(--edge);
+    background: var(--card-hi);
   }
 
   .day-num {
-    font-family: "Bungee", Impact, sans-serif;
-    font-size: 34px;
-    line-height: .85;
-    color: var(--magenta);
-    text-shadow: 0 0 14px rgba(255, 46, 159, .5);
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: 38px;
+    line-height: .82;
+    color: var(--gold);
     flex: none;
   }
 
   .day-dow {
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--text-soft);
+    color: var(--muted);
   }
 
   .day-who {
     margin-left: auto;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 5px 12px;
+    padding: 6px 13px;
     border-radius: 999px;
-    border: 2px solid var(--cyan);
-    color: var(--cyan);
+    border: 1px solid var(--teal);
+    color: var(--teal);
     white-space: nowrap;
   }
 
-  .day-who.quiet { border-color: var(--edge); color: var(--text-soft); }
+  .day-who.quiet { border-color: var(--edge); color: var(--muted); }
 
-  .day-body { padding: 18px 22px 22px; }
+  .day-body { padding: 20px 24px 24px; }
   .day-body p { margin: 0 0 14px; font-size: 15.5px; }
   .day-body p:last-child { margin-bottom: 0; }
 
@@ -486,40 +546,45 @@
   .four-list li {
     font-size: 13px;
     font-weight: 700;
-    padding: 6px 13px;
+    padding: 7px 14px;
     border-radius: 999px;
-    background: rgba(166, 236, 61, .12);
-    border: 2px solid var(--lime);
-    color: var(--lime);
+    background: rgba(240, 195, 92, .1);
+    border: 1px solid var(--gold-deep);
+    color: var(--gold);
   }
 
   .blank {
     display: inline-block;
     min-width: 105px;
-    border-bottom: 2px dotted var(--yellow);
-    color: var(--yellow);
+    border-bottom: 1px dashed var(--gold);
+    color: var(--gold);
     font-style: italic;
-    font-size: 14px;
+    font-size: 14.5px;
   }
 
-  .heads { background: var(--panel); border: 2px solid var(--edge); border-radius: 8px; padding: 26px 26px 28px; }
+  /* fine print */
+  .heads {
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 28px 26px 30px;
+  }
 
   .heads h2 {
-    margin: 0 0 20px;
-    font-size: clamp(21px, 4.8vw, 26px);
-    color: var(--lime);
-    text-shadow: 0 0 18px rgba(166, 236, 61, .3);
+    margin: 0 0 22px;
+    font-size: clamp(23px, 5.4vw, 30px);
+    color: var(--rose);
   }
 
-  .heads ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 15px; }
+  .heads ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; }
 
   .heads li {
     font-size: 15px;
-    line-height: 1.55;
-    padding-left: 20px;
+    line-height: 1.6;
+    padding-left: 22px;
     position: relative;
     max-width: 62ch;
-    color: var(--text-soft);
+    color: var(--muted);
   }
 
   .heads li::before {
@@ -529,88 +594,98 @@
     top: 10px;
     width: 8px;
     height: 8px;
-    background: var(--magenta);
-    border-radius: 2px;
+    background: var(--gold);
+    transform: rotate(45deg);
   }
 
-  .heads li b { color: var(--text); font-weight: 700; }
+  .heads li b { color: var(--cream); font-weight: 800; }
 
   .notes {
-    border-top: 2px dashed var(--edge);
-    padding-top: 26px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px 28px;
+    gap: 22px 28px;
+    padding-top: 8px;
   }
 
   .note-label {
     margin: 0 0 8px;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--cyan);
+    color: var(--teal);
   }
 
-  .note-line { border-bottom: 2px dotted var(--edge); height: 26px; }
+  .note-line { border-bottom: 1px dashed var(--edge); height: 28px; }
 
   .signoff {
     margin: 0;
-    padding-top: 8px;
     text-align: center;
-    font-family: "Bungee", Impact, sans-serif;
-    font-size: clamp(16px, 4vw, 22px);
-    color: var(--yellow);
-    text-shadow: 0 0 20px rgba(255, 224, 27, .4);
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(22px, 5.4vw, 32px);
+    color: var(--gold);
+    text-shadow: 0 2px 26px rgba(240, 195, 92, .35);
   }
+
+  .center { display: flex; justify-content: center; }
 
   /* ================= motion ================= */
 
-  @keyframes pop {
-    from { opacity: 0; transform: scale(.55) rotate(-4deg); }
-    to   { opacity: 1; transform: scale(1) rotate(0); }
+  @keyframes swell {
+    from { opacity: 0; transform: scale(.72); }
+    to   { opacity: 1; transform: scale(1); }
   }
 
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(22px); }
+  @keyframes drift {
+    from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes tumble {
+    from { opacity: 0; transform: translateY(52px) rotate(-1.6deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(0); }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .step { transition: none !important; }
-    .party-copy h1, .party-copy .who, .party-copy .cta, .rabbit-inner { animation: none !important; }
-    .cta, .gate-form button { transition: none !important; }
+    .party-copy h1, .party-copy .who, .party-copy .btn, .rabbit-inner { animation: none !important; }
+    .btn { transition: none !important; }
   }
 
   /* ================= print ================= */
 
   @media print {
-    html, body { background: #fff; color: #000; }
-    #gate, #party, #rabbit, .welcome, #mastfw { display: none !important; }
+    html, body { background: #fff !important; color: #000; }
+    #gate, #party, #rabbit, #stars, .welcome, #mastfw { display: none !important; }
     #sheet { display: block !important; }
-    .sheet { max-width: none; padding: 0; gap: 14px; }
+    .sheet { max-width: none; padding: 0; gap: 16px; }
     .masthead, .ask, .freedom, .day, .heads { break-inside: avoid; }
-    .masthead, .ask, .freedom, .day, .heads, .day-head { background: #fff !important; border-color: #000 !important; }
-    .masthead h1, .ask h2, .section-title, .heads h2, .signoff, .day-num, .ask li::before {
-      color: #000 !important; text-shadow: none !important;
+    .masthead, .ask, .freedom, .day, .heads, .day-head {
+      background: #fff !important; border-color: #000 !important;
     }
+    .masthead h1, .ask h2, .section-title, .heads h2, .signoff, .day-num,
+    .ask li::before, .freedom h3, .gate-title { color: #000 !important; text-shadow: none !important; }
     .masthead .eyebrow, .masthead .dates, .freedom p, .day-body p, .heads li,
-    .ask .why, .ask li .head, .ask li .detail, .section-note { color: #000 !important; }
+    .ask .why, .ask li .head, .ask li .detail, .section-note, .note-label { color: #000 !important; }
     .masthead .tally li, .day-who, .four-list li, .blank {
       color: #000 !important; border-color: #000 !important; background: none !important;
     }
+    .castle { color: #000 !important; }
   }
 </style>
+
+<canvas id="stars" aria-hidden="true"></canvas>
 
 <!-- ================= 1. GATE ================= -->
 <div id="gate">
   <div class="gate-inner">
-    <p class="gate-title neon">You Are Invited</p>
+    <h1 class="gate-title story">You Are Invited</h1>
     <p class="gate-sub">Anaheim &middot; 09.20.2026</p>
+    <div class="flourish"><i></i></div>
     <form class="gate-form" id="gate-form" autocomplete="off">
-      <label for="who">Who&rsquo;s knocking?</label>
+      <label for="who">Who goes there?</label>
       <input id="who" name="who" type="text" inputmode="text" autocapitalize="words" placeholder="Your first name" required>
-      <button type="submit">Let me in</button>
+      <button type="submit" class="btn">Open the gate</button>
       <p class="gate-msg" id="gate-msg" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -620,20 +695,22 @@
 <div class="step" id="party" hidden>
   <canvas id="fw"></canvas>
   <div class="party-copy">
-    <h1 class="neon">Be Our Guest</h1>
+    <h1 class="story">Be Our Guest</h1>
     <p class="who" id="party-name"></p>
-    <button type="button" class="cta" id="enter-btn">Come on in</button>
+    <button type="button" class="btn" id="enter-btn">Come on in</button>
   </div>
 </div>
 
 <!-- ================= 3. RABBIT HOLE ================= -->
 <div class="step" id="rabbit" hidden>
   <div class="rabbit-inner">
-    <h1 class="rabbit-head neon">Thank you for following me down the rabbit hole on this next Disney adventure</h1>
-    <p>Turning thirty could have been a dinner and a cake. Instead seventeen of us are getting on planes or driving across states to go to a place with a tale as old as time, and I could not have picked better people to do it with.</p>
-    <p>Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
+    <p class="rabbit-eyebrow">Curiouser and curiouser&hellip;</p>
+    <h1 class="rabbit-head story">Thank you for following me down the rabbit hole on this next Disney adventure</h1>
+    <div class="flourish"><i></i></div>
+    <p class="body">Turning thirty could have been a quiet dinner and one candle on a cake. Instead seventeen of us are boarding planes and pointing trucks across state lines, all so we can end up in the one place where a tale as old as time still gets told every single night.</p>
+    <p class="body">I could not have picked better people to go chasing that with. Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
     <p class="rabbit-sign">Jacob</p>
-    <button type="button" class="cta" id="continue-btn">Continue</button>
+    <button type="button" class="btn" id="continue-btn">Continue</button>
   </div>
 </div>
 
@@ -649,17 +726,34 @@
     <header class="masthead">
       <canvas id="mastfw" aria-hidden="true"></canvas>
       <p class="eyebrow">You&rsquo;re invited</p>
-      <h1 class="neon">Family Mashup</h1>
-      <p class="dates">Jacob&rsquo;s Dirty 30 &middot; Disneyland Resort &middot; September 19&ndash;23, 2026</p>
+      <h1 class="story">Family Mashup</h1>
+      <p class="dates">Jacob&rsquo;s Dirty 30 &middot; Disneyland Resort &middot; September 19 &amp; 20, 2026</p>
       <ul class="tally">
         <li>17 of us</li>
-        <li>4 park days</li>
+        <li>2 days together</li>
         <li>Park Hoppers all around</li>
       </ul>
+      <svg class="castle" viewBox="0 0 460 150" fill="currentColor" aria-hidden="true">
+        <polygon points="60,74 68,50 76,74"/><rect x="60" y="74" width="16" height="76"/>
+        <polygon points="96,60 106,26 116,60"/><rect x="96" y="60" width="20" height="90"/>
+        <polygon points="140,54 152,14 164,54"/><rect x="140" y="54" width="24" height="96"/>
+        <polygon points="196,40 214,0 232,40"/><rect x="196" y="40" width="36" height="110"/>
+        <polygon points="256,52 268,12 280,52"/><rect x="256" y="52" width="24" height="98"/>
+        <polygon points="304,62 314,28 324,62"/><rect x="304" y="62" width="20" height="88"/>
+        <polygon points="346,72 354,48 362,72"/><rect x="346" y="72" width="16" height="78"/>
+        <rect x="76" y="98" width="64" height="52"/>
+        <rect x="164" y="86" width="32" height="64"/>
+        <rect x="232" y="86" width="24" height="64"/>
+        <rect x="280" y="100" width="24" height="50"/>
+        <rect x="324" y="106" width="22" height="44"/>
+        <rect x="30" y="126" width="30" height="24"/>
+        <rect x="362" y="122" width="34" height="28"/>
+        <rect x="396" y="134" width="26" height="16"/>
+      </svg>
     </header>
 
     <section class="ask">
-      <h2 class="neon">Two things, and that&rsquo;s the whole birthday wish</h2>
+      <h2 class="story">Two things, and that&rsquo;s the whole birthday wish</h2>
       <p class="why">Sunday the 20th is my birthday. I am not asking anybody to follow an itinerary. I am asking for these two, and then you are free.</p>
       <ol>
         <li>
@@ -674,12 +768,12 @@
     </section>
 
     <section class="freedom">
-      <h3>Everything else is yours</h3>
+      <h3>Consider this your permission slip</h3>
       <p>What follows is just where we will probably be. It is not a schedule you owe anybody. Sleep in, split off, go back to the hotel in the middle of the day, skip a park entirely. Nobody is counting heads and nobody will be offended.</p>
-      <p>If you want to tag along with the group, this is how to find us. If you would rather do your own thing, do your own thing. That is genuinely the point of bringing everybody.</p>
+      <p>If you want to tag along with the group, this is how to find us. If you would rather go wander off and find your own trouble, go find it. That is genuinely the point of bringing everybody.</p>
     </section>
 
-    <h2 class="section-title neon">Where you&rsquo;ll find us</h2>
+    <h2 class="section-title story">Where you&rsquo;ll find us</h2>
     <p class="section-note">Loose plans, subject to weather, naps, and whoever is hungry.</p>
 
     <section class="day">
@@ -712,33 +806,11 @@
       </div>
     </section>
 
-    <section class="day">
-      <div class="day-head">
-        <span class="day-num">22</span>
-        <span class="day-dow">Tuesday</span>
-        <span class="day-who quiet">Not a group day</span>
-      </div>
-      <div class="day-body">
-        <p>Jacob and his girlfriend are at Oogie Boogie Bash in California Adventure from 3pm, separate hard ticket. Everybody else has the day completely free. Beach, Downtown Disney, pool, whatever you want.</p>
-      </div>
-    </section>
-
-    <section class="day">
-      <div class="day-head">
-        <span class="day-num">23</span>
-        <span class="day-dow">Wednesday</span>
-        <span class="day-who quiet">Six of us</span>
-      </div>
-      <div class="day-body">
-        <p>Last park day, small group, lightest crowds of the whole trip. Good day for anything we missed.</p>
-      </div>
-    </section>
-
     <section class="heads">
-      <h2 class="neon">Worth knowing before you walk in</h2>
+      <h2 class="story">The fine print, from one traveler to another</h2>
       <ul>
         <li><b>Indiana Jones is closed.</b> Went down September 8 with no reopening date announced. Do not plan a morning around it.</li>
-        <li><b>Haunted Mansion is the Halloween version.</b> Nightmare Before Christmas overlay, running all fall. Same ride, completely different, and a much longer line than usual. Ride it early or not at all.</li>
+        <li><b>Haunted Mansion is wearing its Halloween costume.</b> Nightmare Before Christmas overlay, running all fall. Same ride, completely different, and a much longer line than usual. Ride it early or not at all.</li>
         <li><b>Sunday the 20th, California Adventure closes to us at 6pm.</b> There is a hard-ticket Halloween party that night and we do not have tickets. Anything you want over there, do it Saturday.</li>
         <li><b>There is no early entry anymore.</b> Disneyland ended it in January. Nobody gets in before opening, so the only real edge is being at the turnstiles early.</li>
         <li><b>Everybody has a Park Hopper.</b> Move between the two parks any time of day. The old 11am rule is gone.</li>
@@ -766,6 +838,7 @@
       </div>
     </section>
 
+    <div class="center"><div class="flourish"><i></i></div></div>
     <p class="signoff">Hakuna Matata. See you out there.</p>
 
   </div>
@@ -787,7 +860,7 @@
 
   var STORE_KEY = "familyMashupGuest";
   var SEEN_KEY  = "familyMashupSawParty";
-  var LIFT_MS   = 820;
+  var LIFT_MS   = 900;
 
   var gate      = document.getElementById("gate");
   var party     = document.getElementById("party");
@@ -825,9 +898,65 @@
     return null;
   }
 
+  /* ---------------- drifting starfield ---------------- */
+
+  (function starfield() {
+    var canvas = document.getElementById("stars");
+    var ctx = canvas.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0, stars = [];
+
+    function seed() {
+      var count = Math.round((w * h) / 11000);
+      stars = [];
+      for (var i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 0.5 + Math.random() * 1.5,
+          base: 0.2 + Math.random() * 0.55,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.0006 + Math.random() * 0.0016,
+          drift: 0.008 + Math.random() * 0.022
+        });
+      }
+    }
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+    }
+
+    function paint(t) {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        s.y -= s.drift;
+        if (s.y < -2) { s.y = h + 2; s.x = Math.random() * w; }
+        var a = s.base + Math.sin(t * s.speed + s.phase) * 0.32;
+        if (a <= 0.02) continue;
+        ctx.globalAlpha = Math.min(1, a);
+        ctx.fillStyle = i % 9 === 0 ? "#F0C35C" : "#F8F2E5";
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(paint);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    if (reduced) { paint(0); } else { requestAnimationFrame(paint); }
+  })();
+
   /* ---------------- fireworks ---------------- */
 
-  var PALETTE = ["#FF2E9F", "#29CDF7", "#FFE01B", "#A6EC3D", "#8A45E8"];
+  var PALETTE = ["#F0C35C", "#4FD6C4", "#FF93AC", "#F8F2E5", "#9E8CFF"];
 
   function Fireworks(canvas, opts) {
     opts = opts || {};
@@ -872,7 +1001,7 @@
           vy: Math.sin(a) * speed,
           life: 1,
           decay: 0.008 + Math.random() * 0.014,
-          color: Math.random() < 0.22 ? "#FFFFFF" : color
+          color: Math.random() < 0.2 ? "#FFFFFF" : color
         });
       }
     }
@@ -889,7 +1018,7 @@
         r.y += r.vy;
         r.vy += 0.05;
         ctx.fillStyle = r.color;
-        ctx.fillRect(r.x - 1.5, r.y - 5, 3, 9);
+        ctx.fillRect(r.x - 1.2, r.y - 5, 2.4, 9);
         if (r.y <= r.target || r.vy >= 0) {
           explode(r.x, r.y, r.color);
           rockets.splice(i, 1);
@@ -906,7 +1035,9 @@
         if (s.life <= 0) { sparks.splice(i, 1); continue; }
         ctx.globalAlpha = Math.max(0, s.life);
         ctx.fillStyle = s.color;
-        ctx.fillRect(s.x, s.y, 2.4, 2.4);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, 1.5, 0, Math.PI * 2);
+        ctx.fill();
       }
       ctx.globalAlpha = 1;
 
@@ -937,7 +1068,7 @@
 
   var bigShow = null, ambient = null;
 
-  /* ---------------- step transitions ---------------- */
+  /* ---------------- chapter transitions ---------------- */
 
   function swipeUp(from, next) {
     if (reduced || from.hidden) { from.hidden = true; next(); return; }
@@ -954,7 +1085,7 @@
     sheet.hidden = false;
     window.scrollTo(0, 0);
     if (!reduced && !ambient) {
-      ambient = Fireworks(document.getElementById("mastfw"), { rate: 2100, burst: 42, trail: 0.24 });
+      ambient = Fireworks(document.getElementById("mastfw"), { rate: 2400, burst: 44, trail: 0.22 });
       ambient.start(1);
     }
   }
