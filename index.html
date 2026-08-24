@@ -1170,6 +1170,46 @@
 
   .sheet .pager { margin-top: 4px; }
 
+  .contact {
+    background: var(--card);
+    border: 1px solid var(--gold-deep);
+    border-radius: 14px;
+    padding: 24px 22px 26px;
+    text-align: center;
+  }
+
+  .contact .label {
+    margin: 0 0 12px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    line-height: 1.6;
+  }
+
+  .contact-name {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .contact-num {
+    display: inline-block;
+    font-family: "Berkshire Swash", Georgia, serif;
+    font-size: clamp(30px, 8.5vw, 42px);
+    line-height: 1.15;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-deep);
+    padding-bottom: 2px;
+  }
+
+  .contact-num:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+
   /* ---- the "where I'll be" schedule ---- */
 
   .ask li .detail b { color: var(--cream); font-weight: 800; }
@@ -1325,12 +1365,13 @@
     .pager, .day19-photo, .pagefw { display: none !important; }
     #day19::after { display: none !important; }
     .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
-    .hours, .ask, .heads { break-inside: avoid; }
-    .hours, .day-tag { background: #fff !important; border-color: #000 !important; }
+    .hours, .ask, .heads, .contact { break-inside: avoid; }
+    .hours, .day-tag, .contact { background: #fff !important; border-color: #000 !important; }
     .hours-list li { border-color: #000 !important; }
-    .day-big, .hours-big { color: #000 !important; text-shadow: none !important; }
+    .day-big, .hours-big, .contact-num { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
-    .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi { color: #000 !important; }
+    .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi,
+    .contact .label, .contact-name { color: #000 !important; }
     .sked li { break-inside: avoid; border-color: #000 !important; }
     .sked-title, .sked-intro, .sked .t, .sked .w, .sked .w b, .tag-wish { color: #000 !important; }
     .sked-title { text-shadow: none !important; }
@@ -1586,7 +1627,7 @@
       <ol>
         <li>
           <span class="head">A picture in front of the castle, all of us, Sunday morning.</span>
-          <span class="detail">First thing Sunday morning, at the castle. If somebody is moving slow and can&rsquo;t get out the door fast, we&rsquo;ll hold and do it whenever we are all in the park together instead. Every last one of us in one frame. That is the one photo I want out of this whole trip, and it only works if nobody is off riding something.</span>
+          <span class="detail">Sunday morning, <b>as early as we can possibly get it</b>, at the castle. If somebody is moving slow and can&rsquo;t get out the door fast, we&rsquo;ll hold and do it whenever we are all in the park together instead. Every last one of us in one frame. That is the one photo I want out of this whole trip, and it only works if nobody is off riding something.</span>
         </li>
         <li>
           <span class="head">Lunch together at Cafe Orleans, same day.</span>
@@ -1607,11 +1648,11 @@
         </span>
       </li>
       <li class="wish">
-        <span class="t">Morning</span>
+        <span class="t">First thing</span>
         <span class="w">
           <span class="tag-wish">Birthday wish</span>
           <b>Castle photo, all sixteen of us</b>
-          First thing when we get in, or as soon as everybody has made it through the gate. If you are running behind that morning, just say so and we will wait on you. Nobody gets left out of this one.
+          As early as we can possibly get it. Right when we walk in, or as soon as everybody has made it through the gate. If you are running behind that morning, just say so and we will wait on you. Nobody gets left out of this one.
         </span>
       </li>
       <li class="wish">
@@ -1681,26 +1722,11 @@
   <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="sheet">
 
-    <p class="eyebrow">Fill these in when you know them</p>
-
-    <section class="notes">
-      <div>
-        <p class="note-label">Where we&rsquo;re staying</p>
-        <div class="note-line"></div>
-      </div>
-      <div>
-        <p class="note-label">Castle photo, Sunday at</p>
-        <div class="note-line"></div>
-      </div>
-      <div>
-        <p class="note-label">If you get separated, call</p>
-        <div class="note-line"></div>
-      </div>
-      <div>
-        <p class="note-label">Backup meeting spot</p>
-        <div class="note-line"></div>
-      </div>
-    </section>
+    <div class="contact">
+      <p class="label">If you need anything, before or while we&rsquo;re in the park</p>
+      <p class="contact-name">Text Abby</p>
+      <a class="contact-num" href="sms:+19704816176">970-481-6176</a>
+    </div>
 
     <div class="center"><div class="flourish"><i></i></div></div>
     <p class="signoff">Hakuna Matata. See you out there.</p>
