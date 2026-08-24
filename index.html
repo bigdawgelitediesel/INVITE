@@ -1249,6 +1249,11 @@
     transform: rotate(45deg);
   }
 
+  .rideplan { border-color: var(--ember); }
+  .rideplan .label { color: var(--ember); }
+  .rideplan .app-lead { color: var(--ember); }
+  .rideplan .app-note { margin-bottom: 0; }
+
   .contact {
     background: var(--card);
     border: 1px solid var(--gold-deep);
@@ -1445,12 +1450,12 @@
     #day19::after { display: none !important; }
     .chapter-inner { max-width: none; padding: 16px 0 0; gap: 12px; align-items: stretch; }
     .hours, .ask, .heads, .contact, .appcard { break-inside: avoid; }
-    .hours, .day-tag, .contact, .appcard { background: #fff !important; border-color: #000 !important; }
+    .hours, .day-tag, .contact, .appcard, .rideplan { background: #fff !important; border-color: #000 !important; }
     .hours-list li, .rooms-note { border-color: #000 !important; }
-    .day-big, .hours-big, .contact-num, .app-lead { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
+    .day-big, .hours-big, .contact-num, .app-lead, .rideplan .app-lead { color: #000 !important; text-shadow: none !important; border-color: #000 !important; }
     .day-dow-big, .day-tag, .hours .label, .hours-list li, .hours-list li b,
     .hours-note, .chapter-body p, .chapter-inner .eyebrow, .sheet .eyebrow, .sked .w .hi,
-    .contact .label, .contact-name, .appcard .label, .app-note, .app-list li { color: #000 !important; }
+    .contact .label, .contact-name, .appcard .label, .rideplan .label, .app-note, .app-list li { color: #000 !important; }
     .sked li { break-inside: avoid; border-color: #000 !important; }
     .sked-title, .sked-intro, .sked .t, .sked .w, .sked .w b, .tag-wish { color: #000 !important; }
     .sked-title { text-shadow: none !important; }
@@ -1807,6 +1812,12 @@
 <div class="step" id="sheet" hidden>
   <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="sheet">
+
+    <div class="appcard rideplan">
+      <p class="label">Sort this out ahead of time</p>
+      <p class="app-lead">Getting to the park and back is on each family.</p>
+      <p class="app-note">There is no shuttle and nobody is running a van out of the house. Transportation is not provided, either direction, so every family needs its own game plan. Rideshare, drive and park, or walk it, whatever works for your crew. Just have it figured out before the morning of, not while everybody is standing in the driveway.</p>
+    </div>
 
     <div class="appcard">
       <p class="label">Do this before you fly</p>
