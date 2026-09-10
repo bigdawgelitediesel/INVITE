@@ -290,7 +290,9 @@
 
   .party-copy h1 {
     margin: 0;
-    font-size: clamp(48px, 15vw, 132px);
+    max-width: 12ch;
+    font-size: clamp(40px, 12.2vw, 104px);
+    line-height: 1.02;
     color: var(--gold);
     text-shadow: 0 3px 20px rgba(9, 11, 40, .95), 0 0 46px rgba(245, 200, 106, .6), 0 4px 70px rgba(88, 220, 201, .3);
     animation: swell .9s cubic-bezier(.2, 1.3, .4, 1) both;
@@ -1531,7 +1533,7 @@
   <img class="party-photo" src="guest.jpg" alt="" aria-hidden="true">
   <canvas id="fw" class="pagefw"></canvas>
   <div class="party-copy">
-    <h1 class="story">It&rsquo;s Almost Time</h1>
+    <h1 class="story">For the First Time in Forever</h1>
     <p class="who" id="party-name"></p>
     <div class="countdown" id="countdown">
       <div class="cd-unit"><b id="cd-d">00</b><span>Days</span></div>
