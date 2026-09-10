@@ -307,7 +307,52 @@
     animation: drift .7s .55s both;
   }
 
-  .party-copy .btn { animation: drift .7s 1.15s both; }
+  .countdown {
+    display: flex;
+    gap: clamp(8px, 2.4vw, 16px);
+    animation: drift .7s .85s both;
+  }
+
+  .cd-unit {
+    min-width: clamp(62px, 17vw, 96px);
+    padding: 12px 6px 10px;
+    border-radius: 12px;
+    background: rgba(25, 30, 82, .62);
+    border: 1px solid var(--gold-deep);
+    box-shadow: 0 6px 26px rgba(9, 11, 40, .55);
+  }
+
+  .cd-unit b {
+    display: block;
+    font-size: clamp(26px, 8vw, 44px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 16px rgba(9, 11, 40, .9);
+  }
+
+  .cd-unit span {
+    display: block;
+    margin-top: 6px;
+    font-size: clamp(9px, 2.4vw, 12px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cd-note {
+    margin: -8px 0 0;
+    font-size: clamp(12px, 3.2vw, 15px);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-shadow: 0 2px 14px rgba(9, 11, 40, .95);
+    animation: drift .7s 1s both;
+  }
+
+  .party-copy .btn { animation: drift .7s 1.35s both; }
 
   /* ================= 3. RABBIT HOLE ================= */
 
@@ -975,7 +1020,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .step { transition: none !important; }
-    .party-copy h1, .party-copy .who, .party-copy .btn, .rabbit-inner { animation: none !important; }
+    .party-copy h1, .party-copy .who, .party-copy .btn, .countdown, .cd-note, .rabbit-inner { animation: none !important; }
     .btn { transition: none !important; }
   }
 
@@ -1486,8 +1531,15 @@
   <img class="party-photo" src="guest.jpg" alt="" aria-hidden="true">
   <canvas id="fw" class="pagefw"></canvas>
   <div class="party-copy">
-    <h1 class="story">Be Our Guest</h1>
+    <h1 class="story">It&rsquo;s Almost Time</h1>
     <p class="who" id="party-name"></p>
+    <div class="countdown" id="countdown">
+      <div class="cd-unit"><b id="cd-d">00</b><span>Days</span></div>
+      <div class="cd-unit"><b id="cd-h">00</b><span>Hrs</span></div>
+      <div class="cd-unit"><b id="cd-m">00</b><span>Min</span></div>
+      <div class="cd-unit"><b id="cd-s">00</b><span>Sec</span></div>
+    </div>
+    <p class="cd-note" id="cd-note">until we roll out</p>
     <button type="button" class="btn js-next" id="enter-btn">Come on in</button>
   </div>
 </div>
@@ -1877,6 +1929,43 @@
   var STORE_KEY = "familyMashupGuest";
   var SEEN_KEY  = "familyMashupSawParty";
   var LIFT_MS   = 900;
+
+  /* ---------------------------------------------------------------
+     COUNTDOWN. Pinned to one fixed instant so every guest sees the
+     same numbers no matter what time zone their phone is in.
+     Target: Friday September 18 2026, 4:00 PM Mountain (UTC-6 in DST)
+     = 22:00 UTC. Change the Date.UTC line to move it.
+  --------------------------------------------------------------- */
+  var CD_TARGET = Date.UTC(2026, 8, 18, 22, 0, 0);
+
+  var cdBox  = document.getElementById("countdown");
+  var cdNote = document.getElementById("cd-note");
+  var cdD    = document.getElementById("cd-d");
+  var cdH    = document.getElementById("cd-h");
+  var cdM    = document.getElementById("cd-m");
+  var cdS    = document.getElementById("cd-s");
+
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+
+  function tickCountdown() {
+    if (!cdBox) return;
+    var left = CD_TARGET - Date.now();
+
+    if (left <= 0) {
+      cdBox.hidden = true;
+      if (cdNote) cdNote.textContent = "It2019s time. Let2019s go.";
+      return;
+    }
+
+    var s = Math.floor(left / 1000);
+    cdD.textContent = pad2(Math.floor(s / 86400));
+    cdH.textContent = pad2(Math.floor(s / 3600) % 24);
+    cdM.textContent = pad2(Math.floor(s / 60) % 60);
+    cdS.textContent = pad2(s % 60);
+  }
+
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
 
   var gate      = document.getElementById("gate");
   var party     = document.getElementById("party");
