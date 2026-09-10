@@ -414,7 +414,13 @@
     margin: 0;
     font-family: "Berkshire Swash", Georgia, serif;
     font-size: clamp(17px, 4.4vw, 23px);
+    line-height: 1.35;
     color: var(--teal);
+    /* full Peter Pan line is long enough to wrap; balance it so it splits
+       at the comma instead of orphaning the last word */
+    text-wrap: balance;
+    max-width: 22ch;
+    margin-inline: auto;
   }
 
   .rabbit-head {
@@ -1594,11 +1600,11 @@
 <div class="step" id="rabbit" hidden>
   <canvas class="pagefw" aria-hidden="true"></canvas>
   <div class="rabbit-inner">
-    <p class="rabbit-eyebrow">Curiouser and curiouser&hellip;</p>
-    <h1 class="rabbit-head story">Thank you for following me down the rabbit hole on this next Disney adventure</h1>
+    <p class="rabbit-eyebrow">Second star to the right, and straight on till morning</p>
+    <h1 class="rabbit-head story">Thank you for refusing to grow up with me</h1>
     <div class="flourish"><i></i></div>
-    <p class="body">Turning thirty could have been a quiet dinner and one candle on a cake. Instead fifteen of us are boarding planes and pointing trucks across state lines, all so we can end up in the one place where a tale as old as time still gets told every single night.</p>
-    <p class="body">I could not have picked better people to go chasing that with. Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
+    <p class="body">Thirty is the birthday where you&rsquo;re supposed to settle down and start acting like it. Instead fifteen of us are boarding planes and pointing trucks across state lines so we can go stand in line for a teacup ride. I have never been more comfortable with a decision.</p>
+    <p class="body">I could not have picked better people to not grow up with. Thank you for saying yes to this one. Whatever it turns into out there, I&rsquo;m glad you&rsquo;re in it.</p>
     <p class="rabbit-sign">Jacob</p>
     <div class="pager"><button type="button" class="btn ghost js-back">Back</button><button type="button" class="btn js-next" id="continue-btn">Continue</button></div>
   </div>
