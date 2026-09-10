@@ -1973,10 +1973,12 @@
   /* ---------------------------------------------------------------
      COUNTDOWN. Pinned to one fixed instant so every guest sees the
      same numbers no matter what time zone their phone is in.
-     Target: Friday September 18 2026, 4:00 PM Mountain (UTC-6 in DST)
-     = 22:00 UTC. Change the Date.UTC line to move it.
+     Target: Friday September 18 2026, 4:00 PM PACIFIC (Anaheim, UTC-7
+     in DST) = 23:00 UTC. This is the Airbnb doors-open time on the
+     check-in page; keep the two in step. Change the Date.UTC line to
+     move it.
   --------------------------------------------------------------- */
-  var CD_TARGET = Date.UTC(2026, 8, 18, 22, 0, 0);
+  var CD_TARGET = Date.UTC(2026, 8, 18, 23, 0, 0);
 
   var cdBox  = document.getElementById("countdown");
   var cdNote = document.getElementById("cd-note");
