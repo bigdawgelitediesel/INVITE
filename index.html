@@ -732,13 +732,19 @@
 
   .rooms dt {
     margin: 0;
+    /* stretch, not center: a centered dt shrinks to its own content, which
+       drags its border-top down and leaves the left rule lower than the
+       right one. Stretch keeps both rules on the same line, and the extra
+       padding-top lines the 12px label up with the 16px name beside it. */
+    align-self: stretch;
+    padding-top: 19px;
     padding-right: 18px;
     font-size: 12px;
+    line-height: 1.45;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--gold);
-    align-self: center;
   }
 
   .rooms dd {
