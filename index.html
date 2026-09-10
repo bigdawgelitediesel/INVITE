@@ -8,17 +8,17 @@
 
 <style>
   :root {
-    --night:      #242B70;
-    --deep:       #191E52;
-    --card:       #2C3486;
-    --card-hi:    #38419C;
-    --edge:       #4C55B4;
+    --night:      #6B1B36;
+    --deep:       #3A0E1E;
+    --card:       #7C2442;
+    --card-hi:    #93304F;
+    --edge:       #B04763;
     --gold:       #F5C86A;
     --gold-deep:  #D0A044;
     --teal:       #58DCC9;
     --ember:      #F5A15B;
     --cream:      #FAF4E9;
-    --muted:      #C4C0E4;
+    --muted:      #E2C7CF;
   }
 
   * { box-sizing: border-box; }
@@ -27,8 +27,8 @@
 
   body {
     background:
-      radial-gradient(120% 62% at 50% 108%, rgba(255, 176, 106, .20) 0%, rgba(25, 30, 82, 0) 62%),
-      radial-gradient(150% 95% at 50% -12%, #4B4499 0%, rgba(36, 43, 112, 0) 60%),
+      radial-gradient(120% 62% at 50% 108%, rgba(255, 176, 106, .22) 0%, rgba(58, 14, 30, 0) 62%),
+      radial-gradient(150% 95% at 50% -12%, #A33A5E 0%, rgba(107, 27, 54, 0) 60%),
       linear-gradient(180deg, var(--night) 0%, var(--deep) 100%);
     background-attachment: fixed;
     color: var(--cream);
@@ -46,6 +46,34 @@
     font-family: "Berkshire Swash", Georgia, serif;
     font-weight: 400;
     line-height: 1.1;
+
+    /* Brushed-gold metal. The hard value flip at 47-53% is what sells it
+       as a reflective surface instead of a flat gradient. */
+    background-image: linear-gradient(177deg,
+      #FFF7DF 0%,
+      #F7DE9C 13%,
+      #EABE58 29%,
+      #B9812A 46%,
+      #8E5E1B 52%,
+      #E0B049 59%,
+      #FBE5A8 73%,
+      #FFF8E4 85%,
+      #C8952E 100%);
+    /* repeat the sweep once per line, otherwise a four-line headline
+       stretches one gradient across all of it and the last line washes out */
+    background-size: 100% 1.06em;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    /* text-shadow paints ON TOP of a clipped background, so the glow has
+       to come from a filter instead or it muddies the metal. */
+    text-shadow: none;
+    filter:
+      drop-shadow(0 2px 5px rgba(26, 5, 13, .85))
+      drop-shadow(0 0 26px rgba(245, 200, 106, .28));
   }
 
   /* drifting starfield behind everything */
@@ -150,8 +178,8 @@
     z-index: 1;
     pointer-events: none;
     background:
-      radial-gradient(78% 52% at 50% 50%, rgba(20, 24, 68, .88) 0%, rgba(20, 24, 68, .42) 62%, rgba(20, 24, 68, 0) 100%),
-      linear-gradient(180deg, rgba(25, 30, 82, .62) 0%, rgba(25, 30, 82, .50) 38%, rgba(25, 30, 82, .78) 78%, rgba(25, 30, 82, .95) 100%);
+      radial-gradient(78% 52% at 50% 50%, rgba(46, 11, 24, .88) 0%, rgba(46, 11, 24, .42) 62%, rgba(46, 11, 24, 0) 100%),
+      linear-gradient(180deg, rgba(58, 14, 30, .62) 0%, rgba(58, 14, 30, .50) 38%, rgba(58, 14, 30, .78) 78%, rgba(58, 14, 30, .95) 100%);
   }
 
   .gate-inner {
@@ -170,7 +198,7 @@
     text-align: center;
     font-size: clamp(42px, 13vw, 68px);
     color: var(--gold);
-    text-shadow: 0 2px 18px rgba(9, 11, 40, .95), 0 0 44px rgba(245, 200, 106, .5);
+    text-shadow: 0 2px 18px rgba(26, 5, 13, .95), 0 0 44px rgba(245, 200, 106, .5);
   }
 
   .gate-sub {
@@ -181,7 +209,7 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--teal);
-    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 12px rgba(26, 5, 13, .95);
   }
 
   .gate-form { width: 100%; margin-top: 10px; }
@@ -195,7 +223,7 @@
     text-transform: uppercase;
     color: var(--cream);
     margin-bottom: 12px;
-    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 12px rgba(26, 5, 13, .95);
   }
 
   .gate-form input {
@@ -205,14 +233,14 @@
     font-weight: 600;
     text-align: center;
     color: var(--cream);
-    background: #131845;
+    background: #2C0A16;
     border: 2px solid var(--edge);
     border-radius: 10px;
     padding: 15px 14px;
-    box-shadow: 0 10px 30px rgba(9, 11, 40, .55);
+    box-shadow: 0 10px 30px rgba(26, 5, 13, .55);
   }
 
-  .gate-form input::placeholder { color: #7B76A8; font-weight: 400; }
+  .gate-form input::placeholder { color: #B58C99; font-weight: 400; }
 
   .gate-form input:focus-visible {
     outline: none;
@@ -220,7 +248,7 @@
     box-shadow: 0 0 0 4px rgba(240, 195, 92, .16);
   }
 
-  .gate-form .btn { margin-top: 16px; width: 100%; box-shadow: 0 10px 30px rgba(9, 11, 40, .5), inset 0 1px 0 rgba(255, 255, 255, .55); }
+  .gate-form .btn { margin-top: 16px; width: 100%; box-shadow: 0 10px 30px rgba(26, 5, 13, .5), inset 0 1px 0 rgba(255, 255, 255, .55); }
 
   .gate-msg {
     min-height: 24px;
@@ -241,7 +269,7 @@
     justify-content: center;
     padding: 24px;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(16,20,64,.35) 0%, rgba(9,11,40,.85) 100%), var(--deep);
+    background: linear-gradient(180deg, rgba(40, 10, 21,.35) 0%, rgba(26, 5, 13,.85) 100%), var(--deep);
   }
 
   .party-photo {
@@ -264,8 +292,8 @@
     z-index: 1;
     pointer-events: none;
     background:
-      radial-gradient(72% 48% at 50% 46%, rgba(16, 20, 62, .90) 0%, rgba(16, 20, 62, .52) 62%, rgba(16, 20, 62, .18) 100%),
-      linear-gradient(180deg, rgba(25, 30, 82, .70) 0%, rgba(25, 30, 82, .52) 40%, rgba(25, 30, 82, .82) 100%);
+      radial-gradient(72% 48% at 50% 46%, rgba(40, 10, 21, .90) 0%, rgba(40, 10, 21, .52) 62%, rgba(40, 10, 21, .18) 100%),
+      linear-gradient(180deg, rgba(58, 14, 30, .70) 0%, rgba(58, 14, 30, .52) 40%, rgba(58, 14, 30, .82) 100%);
   }
 
   #fw {
@@ -294,7 +322,7 @@
     font-size: clamp(40px, 12.2vw, 104px);
     line-height: 1.02;
     color: var(--gold);
-    text-shadow: 0 3px 20px rgba(9, 11, 40, .95), 0 0 46px rgba(245, 200, 106, .6), 0 4px 70px rgba(88, 220, 201, .3);
+    text-shadow: 0 3px 20px rgba(26, 5, 13, .95), 0 0 46px rgba(245, 200, 106, .6), 0 4px 70px rgba(88, 220, 201, .3);
     animation: swell .9s cubic-bezier(.2, 1.3, .4, 1) both;
   }
 
@@ -305,7 +333,7 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--teal);
-    text-shadow: 0 2px 14px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 14px rgba(26, 5, 13, .95);
     animation: drift .7s .55s both;
   }
 
@@ -319,9 +347,9 @@
     min-width: clamp(62px, 17vw, 96px);
     padding: 12px 6px 10px;
     border-radius: 12px;
-    background: rgba(25, 30, 82, .62);
+    background: rgba(58, 14, 30, .62);
     border: 1px solid var(--gold-deep);
-    box-shadow: 0 6px 26px rgba(9, 11, 40, .55);
+    box-shadow: 0 6px 26px rgba(26, 5, 13, .55);
   }
 
   .cd-unit b {
@@ -331,7 +359,7 @@
     line-height: 1;
     color: var(--gold);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 2px 16px rgba(9, 11, 40, .9);
+    text-shadow: 0 2px 16px rgba(26, 5, 13, .9);
   }
 
   .cd-unit span {
@@ -350,7 +378,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--teal);
-    text-shadow: 0 2px 14px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 14px rgba(26, 5, 13, .95);
     animation: drift .7s 1s both;
   }
 
@@ -365,7 +393,7 @@
     align-items: center;
     justify-content: center;
     padding: 46px 22px 54px;
-    background: radial-gradient(110% 62% at 50% 0%, rgba(79, 214, 196, .16) 0%, rgba(9, 11, 40, 0) 60%), var(--deep);
+    background: radial-gradient(110% 62% at 50% 0%, rgba(79, 214, 196, .16) 0%, rgba(26, 5, 13, 0) 60%), var(--deep);
   }
 
   .rabbit-inner {
@@ -437,10 +465,10 @@
     pointer-events: none;
     background: linear-gradient(
       180deg,
-      rgba(36, 43, 112, .38) 0%,
-      rgba(28, 34, 92, .62) 26%,
-      rgba(25, 30, 82, .88) 52%,
-      rgba(25, 30, 82, .95) 100%
+      rgba(107, 27, 54, .38) 0%,
+      rgba(90, 22, 46, .62) 26%,
+      rgba(58, 14, 30, .88) 52%,
+      rgba(58, 14, 30, .95) 100%
     );
   }
 
@@ -474,14 +502,14 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--teal);
-    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 12px rgba(26, 5, 13, .95);
   }
 
   .intro-inner h1 {
     margin: 0;
     font-size: clamp(40px, 11vw, 76px);
     color: var(--gold);
-    text-shadow: 0 3px 20px rgba(9, 11, 40, .95), 0 0 46px rgba(245, 200, 106, .5);
+    text-shadow: 0 3px 20px rgba(26, 5, 13, .95), 0 0 46px rgba(245, 200, 106, .5);
     text-wrap: balance;
   }
 
@@ -490,7 +518,7 @@
     font-size: 15.5px;
     font-weight: 600;
     color: var(--cream);
-    text-shadow: 0 2px 12px rgba(9, 11, 40, .95);
+    text-shadow: 0 2px 12px rgba(26, 5, 13, .95);
   }
 
   .intro-inner .tally {
@@ -512,7 +540,7 @@
     border: 1px solid var(--gold-deep);
     border-radius: 999px;
     padding: 6px 14px;
-    background: rgba(9, 11, 40, .42);
+    background: rgba(26, 5, 13, .42);
   }
 
   .intro-prose {
@@ -527,7 +555,7 @@
     font-size: 16.5px;
     line-height: 1.75;
     color: var(--cream);
-    text-shadow: 0 2px 14px rgba(9, 11, 40, .8);
+    text-shadow: 0 2px 14px rgba(26, 5, 13, .8);
   }
 
   .intro-prose > p:last-of-type { margin-bottom: 0; }
@@ -535,7 +563,7 @@
   .one-ask {
     margin-top: 26px;
     border-left: 3px solid var(--gold);
-    background: rgba(9, 11, 40, .55);
+    background: rgba(26, 5, 13, .55);
     border-radius: 0 10px 10px 0;
     padding: 20px 24px 22px;
   }
@@ -1073,10 +1101,10 @@
     pointer-events: none;
     background: linear-gradient(
       180deg,
-      rgba(36, 43, 112, .52) 0%,
-      rgba(28, 34, 92, .78) 22%,
-      rgba(25, 30, 82, .93) 46%,
-      rgba(25, 30, 82, .97) 100%
+      rgba(107, 27, 54, .52) 0%,
+      rgba(90, 22, 46, .78) 22%,
+      rgba(58, 14, 30, .93) 46%,
+      rgba(58, 14, 30, .97) 100%
     );
   }
 
@@ -1482,6 +1510,12 @@
     .stay-card .address, .rooms dt, .maplink,
     .stay-card .when-time, .stay-card .when-day, .bfast-lead { color: #000 !important; text-shadow: none !important; }
     .maplink { border-color: #000 !important; }
+    .story {
+      background-image: none !important;
+      -webkit-text-fill-color: #000 !important;
+      color: #000 !important;
+      filter: none !important;
+    }
     .intro-inner .eyebrow, .intro-inner .dates, .intro-prose p, .one-ask p, .day-body p, .heads li,
     .checkin-inner .eyebrow, .checkin-inner .lead, .checkin-note, .rooms dd, .stay-card .label, .rooms > .label, .bfast-note, .rooms-note,
     .ask .why, .ask li .head, .ask li .detail, .ask li .detail b, .section-note, .note-label { color: #000 !important; }
@@ -1508,6 +1542,10 @@
     .sked-title { text-shadow: none !important; }
     .tag-wish { border-color: #000 !important; }
   }
+
+  /* ---- metal type: the per-page glows below would paint on top of the
+     clipped gradient, so they get stripped here (later block wins) ---- */
+  .story { text-shadow: none !important; }
 </style>
 
 <canvas id="stars" aria-hidden="true"></canvas>
@@ -2063,7 +2101,7 @@
 
   /* ---------------- fireworks ---------------- */
 
-  var PALETTE = ["#F5C86A", "#58DCC9", "#F5A15B", "#FAF4E9", "#9E8CFF"];
+  var PALETTE = ["#F5C86A", "#58DCC9", "#F5A15B", "#FAF4E9", "#FF9EC4"];
 
   function Fireworks(canvas, opts) {
     opts = opts || {};
